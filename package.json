@@ -1,0 +1,14 @@
+{
+  "name": "KDM-log",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/doerschera/KDM-log.git",
+  "author": "Aly Doerscher <adoerscher@workwithopal.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "graphql-yoga": "^1.16.7"
+  }
+}

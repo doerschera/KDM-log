@@ -9,6 +9,9 @@
     "start": "node src/index.js"
   },
   "dependencies": {
-    "graphql-yoga": "^1.16.7"
+    "graphql-cli": "^2.16.7",
+    "graphql-yoga": "^1.16.7",
+    "prisma": "^1.19.0",
+    "prisma-binding": "^2.1.6"
   }
 }

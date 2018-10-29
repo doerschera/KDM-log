@@ -2,3 +2,6 @@
 endpoint: https://us1.prisma.sh/aly-doerscher-4d5fa2/kdm/dev
 datamodel: datamodel.graphql
 secret: 'darklantern'
+hooks:
+  post-deploy:
+    - graphql get-schema --project database

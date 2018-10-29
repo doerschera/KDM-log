@@ -1,0 +1,10 @@
+# import Survivor from "./generated/prisma.graphql"
+
+type Query {
+  info: String!
+  survivors: [Survivor!]!
+}
+
+type Mutation {
+  survivor(name: String!, gender: String!): Survivor!
+}

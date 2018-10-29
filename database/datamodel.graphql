@@ -1,0 +1,6 @@
+type Survivor {
+  id: ID! @unique
+  createdAt: DateTime!
+  name: String!
+  gender: String!
+}

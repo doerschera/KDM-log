@@ -1,26 +1,13 @@
 const { GraphQLServer } = require('graphql-yoga');
 const { Prisma } = require('prisma-binding');
+const Query = require('./resolvers/Query');
+const Mutation = require('./resolvers/Mutation');
+const AuthPayload = require('./resolvers/AuthPayload');
 
 const resolvers = {
-  Query: {
-    info: () => 'Have a bad time all the time',
-    survivors: (root, args, context, info ) => context.db.query.survivors({}, info),
-  },
-  Mutation: {
-    survivor: (root, args, context, info) => {
-      return context.db.mutation.createSurvivor({
-        data: {
-          name: args.name || 'Survivor',
-          gender: args.gender,
-        },
-      }, info);
-    },
-  },
-  Survivor: {
-    id: (root) => root.id,
-    name: (root) => root.name,
-    gender: (root) => root.gender,
-  },
+  Query,
+  Mutation,
+  AuthPayload,
 };
 
 const server = new GraphQLServer({

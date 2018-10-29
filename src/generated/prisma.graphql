@@ -1,13 +1,286 @@
 # source: https://us1.prisma.sh/aly-doerscher-4d5fa2/kdm/dev
-# timestamp: Sun Oct 28 2018 18:07:50 GMT-0700 (PDT)
+# timestamp: Sun Oct 28 2018 20:51:44 GMT-0700 (PDT)
+
+type AggregateCampaign {
+  count: Int!
+}
 
 type AggregateSurvivor {
+  count: Int!
+}
+
+type AggregateUser {
   count: Int!
 }
 
 type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
+}
+
+type Campaign implements Node {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+}
+
+"""A connection to a list of items."""
+type CampaignConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CampaignEdge]!
+  aggregate: AggregateCampaign!
+}
+
+input CampaignCreateInput {
+  name: String!
+  users: UserCreateManyWithoutCampaignInput
+}
+
+input CampaignCreateOneInput {
+  create: CampaignCreateInput
+  connect: CampaignWhereUniqueInput
+}
+
+input CampaignCreateOneWithoutUsersInput {
+  create: CampaignCreateWithoutUsersInput
+  connect: CampaignWhereUniqueInput
+}
+
+input CampaignCreateWithoutUsersInput {
+  name: String!
+}
+
+"""An edge in a connection."""
+type CampaignEdge {
+  """The item at the end of the edge."""
+  node: Campaign!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum CampaignOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type CampaignPreviousValues {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+}
+
+type CampaignSubscriptionPayload {
+  mutation: MutationType!
+  node: Campaign
+  updatedFields: [String!]
+  previousValues: CampaignPreviousValues
+}
+
+input CampaignSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CampaignSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CampaignSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CampaignSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: CampaignWhereInput
+}
+
+input CampaignUpdateDataInput {
+  name: String
+  users: UserUpdateManyWithoutCampaignInput
+}
+
+input CampaignUpdateInput {
+  name: String
+  users: UserUpdateManyWithoutCampaignInput
+}
+
+input CampaignUpdateManyInput {
+  name: String
+}
+
+input CampaignUpdateOneRequiredInput {
+  create: CampaignCreateInput
+  connect: CampaignWhereUniqueInput
+  update: CampaignUpdateDataInput
+  upsert: CampaignUpsertNestedInput
+}
+
+input CampaignUpdateOneWithoutUsersInput {
+  create: CampaignCreateWithoutUsersInput
+  connect: CampaignWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: CampaignUpdateWithoutUsersDataInput
+  upsert: CampaignUpsertWithoutUsersInput
+}
+
+input CampaignUpdateWithoutUsersDataInput {
+  name: String
+}
+
+input CampaignUpsertNestedInput {
+  update: CampaignUpdateDataInput!
+  create: CampaignCreateInput!
+}
+
+input CampaignUpsertWithoutUsersInput {
+  update: CampaignUpdateWithoutUsersDataInput!
+  create: CampaignCreateWithoutUsersInput!
+}
+
+input CampaignWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CampaignWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CampaignWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CampaignWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  users_every: UserWhereInput
+  users_some: UserWhereInput
+  users_none: UserWhereInput
+}
+
+input CampaignWhereUniqueInput {
+  id: ID
 }
 
 scalar DateTime
@@ -19,12 +292,24 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
+  createUser(data: UserCreateInput!): User!
   createSurvivor(data: SurvivorCreateInput!): Survivor!
+  createCampaign(data: CampaignCreateInput!): Campaign!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateSurvivor(data: SurvivorUpdateInput!, where: SurvivorWhereUniqueInput!): Survivor
+  updateCampaign(data: CampaignUpdateInput!, where: CampaignWhereUniqueInput!): Campaign
+  deleteUser(where: UserWhereUniqueInput!): User
   deleteSurvivor(where: SurvivorWhereUniqueInput!): Survivor
+  deleteCampaign(where: CampaignWhereUniqueInput!): Campaign
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertSurvivor(where: SurvivorWhereUniqueInput!, create: SurvivorCreateInput!, update: SurvivorUpdateInput!): Survivor!
+  upsertCampaign(where: CampaignWhereUniqueInput!, create: CampaignCreateInput!, update: CampaignUpdateInput!): Campaign!
+  updateManyUsers(data: UserUpdateManyInput!, where: UserWhereInput): BatchPayload!
   updateManySurvivors(data: SurvivorUpdateManyInput!, where: SurvivorWhereInput): BatchPayload!
+  updateManyCampaigns(data: CampaignUpdateManyInput!, where: CampaignWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManySurvivors(where: SurvivorWhereInput): BatchPayload!
+  deleteManyCampaigns(where: CampaignWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -55,9 +340,15 @@ type PageInfo {
 }
 
 type Query {
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   survivors(where: SurvivorWhereInput, orderBy: SurvivorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Survivor]!
+  campaigns(where: CampaignWhereInput, orderBy: CampaignOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Campaign]!
+  user(where: UserWhereUniqueInput!): User
   survivor(where: SurvivorWhereUniqueInput!): Survivor
+  campaign(where: CampaignWhereUniqueInput!): Campaign
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   survivorsConnection(where: SurvivorWhereInput, orderBy: SurvivorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SurvivorConnection!
+  campaignsConnection(where: CampaignWhereInput, orderBy: CampaignOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CampaignConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -67,11 +358,14 @@ type Query {
 }
 
 type Subscription {
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   survivor(where: SurvivorSubscriptionWhereInput): SurvivorSubscriptionPayload
+  campaign(where: CampaignSubscriptionWhereInput): CampaignSubscriptionPayload
 }
 
 type Survivor implements Node {
   id: ID!
+  campaign: Campaign!
   createdAt: DateTime!
   name: String!
   gender: String!
@@ -90,6 +384,7 @@ type SurvivorConnection {
 input SurvivorCreateInput {
   name: String!
   gender: String!
+  campaign: CampaignCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -163,6 +458,7 @@ input SurvivorSubscriptionWhereInput {
 input SurvivorUpdateInput {
   name: String
   gender: String
+  campaign: CampaignUpdateOneRequiredInput
 }
 
 input SurvivorUpdateManyInput {
@@ -321,8 +617,331 @@ input SurvivorWhereInput {
 
   """All values not ending with the given string."""
   gender_not_ends_with: String
+  campaign: CampaignWhereInput
 }
 
 input SurvivorWhereUniqueInput {
   id: ID
+}
+
+type User implements Node {
+  id: ID!
+  name: String!
+  username: String!
+  password: String!
+  campaign: Campaign
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  name: String!
+  username: String!
+  password: String!
+  campaign: CampaignCreateOneWithoutUsersInput
+}
+
+input UserCreateManyWithoutCampaignInput {
+  create: [UserCreateWithoutCampaignInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateWithoutCampaignInput {
+  name: String!
+  username: String!
+  password: String!
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """The item at the end of the edge."""
+  node: User!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  username_ASC
+  username_DESC
+  password_ASC
+  password_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  name: String!
+  username: String!
+  password: String!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+}
+
+input UserUpdateInput {
+  name: String
+  username: String
+  password: String
+  campaign: CampaignUpdateOneWithoutUsersInput
+}
+
+input UserUpdateManyInput {
+  name: String
+  username: String
+  password: String
+}
+
+input UserUpdateManyWithoutCampaignInput {
+  create: [UserCreateWithoutCampaignInput!]
+  connect: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutCampaignInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutCampaignInput!]
+}
+
+input UserUpdateWithoutCampaignDataInput {
+  name: String
+  username: String
+  password: String
+}
+
+input UserUpdateWithWhereUniqueWithoutCampaignInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutCampaignDataInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutCampaignInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutCampaignDataInput!
+  create: UserCreateWithoutCampaignInput!
+}
+
+input UserWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  username: String
+
+  """All values that are not equal to given value."""
+  username_not: String
+
+  """All values that are contained in given list."""
+  username_in: [String!]
+
+  """All values that are not contained in given list."""
+  username_not_in: [String!]
+
+  """All values less than the given value."""
+  username_lt: String
+
+  """All values less than or equal the given value."""
+  username_lte: String
+
+  """All values greater than the given value."""
+  username_gt: String
+
+  """All values greater than or equal the given value."""
+  username_gte: String
+
+  """All values containing the given string."""
+  username_contains: String
+
+  """All values not containing the given string."""
+  username_not_contains: String
+
+  """All values starting with the given string."""
+  username_starts_with: String
+
+  """All values not starting with the given string."""
+  username_not_starts_with: String
+
+  """All values ending with the given string."""
+  username_ends_with: String
+
+  """All values not ending with the given string."""
+  username_not_ends_with: String
+  password: String
+
+  """All values that are not equal to given value."""
+  password_not: String
+
+  """All values that are contained in given list."""
+  password_in: [String!]
+
+  """All values that are not contained in given list."""
+  password_not_in: [String!]
+
+  """All values less than the given value."""
+  password_lt: String
+
+  """All values less than or equal the given value."""
+  password_lte: String
+
+  """All values greater than the given value."""
+  password_gt: String
+
+  """All values greater than or equal the given value."""
+  password_gte: String
+
+  """All values containing the given string."""
+  password_contains: String
+
+  """All values not containing the given string."""
+  password_not_contains: String
+
+  """All values starting with the given string."""
+  password_starts_with: String
+
+  """All values not starting with the given string."""
+  password_not_starts_with: String
+
+  """All values ending with the given string."""
+  password_ends_with: String
+
+  """All values not ending with the given string."""
+  password_not_ends_with: String
+  campaign: CampaignWhereInput
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  username: String
 }

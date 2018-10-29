@@ -1,5 +1,21 @@
+type Campaign {
+  id: ID! @unique
+  name: String!
+  createdAt: DateTime!
+  users: [User!]!
+}
+
+type User {
+  id: ID! @unique
+  name: String!
+  username: String! @unique
+  password: String!
+  campaigns: [Campaign]!
+}
+
 type Survivor {
   id: ID! @unique
+  campaign: Campaign!
   createdAt: DateTime!
   name: String!
   gender: String!

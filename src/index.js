@@ -1,27 +1,12 @@
-const { GraphQLServer } = require('graphql-yoga');
-const { Prisma } = require('prisma-binding');
-const Query = require('./resolvers/Query');
-const Mutation = require('./resolvers/Mutation');
-const AuthPayload = require('./resolvers/AuthPayload');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
 
-const resolvers = {
-  Query,
-  Mutation,
-  AuthPayload,
-};
+ReactDOM.render(<App />, document.getElementById('root'));
 
-const server = new GraphQLServer({
-  typeDefs: './src/schema.graphql',
-  resolvers,
-  context: req => ({
-    ...req,
-    db: new Prisma({
-      typeDefs: 'src/generated/prisma.graphql',
-      endpoint: 'https://us1.prisma.sh/aly-doerscher-4d5fa2/kdm/dev',
-      secret: 'darklantern',
-      ebug: true,
-    })
-  }),
-});
-
-server.start(() => console.log('Server is running on http://localhost:4000'));
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister();

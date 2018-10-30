@@ -1,7 +1,43 @@
 # source: https://us1.prisma.sh/aly-doerscher-4d5fa2/kdm/dev
-# timestamp: Sun Oct 28 2018 20:51:44 GMT-0700 (PDT)
+# timestamp: Tue Oct 30 2018 13:42:01 GMT-0700 (Pacific Daylight Time)
+
+type AggregateBrain {
+  count: Int!
+}
 
 type AggregateCampaign {
+  count: Int!
+}
+
+type AggregateCourage {
+  count: Int!
+}
+
+type AggregateDisorder {
+  count: Int!
+}
+
+type AggregateFeature {
+  count: Int!
+}
+
+type AggregateFightingArt {
+  count: Int!
+}
+
+type AggregateHitLocation {
+  count: Int!
+}
+
+type AggregateMovement {
+  count: Int!
+}
+
+type AggregateSettlement {
+  count: Int!
+}
+
+type AggregateSurvival {
   count: Int!
 }
 
@@ -9,7 +45,15 @@ type AggregateSurvivor {
   count: Int!
 }
 
+type AggregateUnderstanding {
+  count: Int!
+}
+
 type AggregateUser {
+  count: Int!
+}
+
+type AggregateWeapon {
   count: Int!
 }
 
@@ -18,11 +62,224 @@ type BatchPayload {
   count: Long!
 }
 
+type Brain implements Node {
+  id: ID!
+  survivor: Survivor!
+  value: Int
+  injured: Boolean
+}
+
+"""A connection to a list of items."""
+type BrainConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [BrainEdge]!
+  aggregate: AggregateBrain!
+}
+
+input BrainCreateInput {
+  value: Int
+  injured: Boolean
+  survivor: SurvivorCreateOneWithoutBrainInput!
+}
+
+input BrainCreateOneWithoutSurvivorInput {
+  create: BrainCreateWithoutSurvivorInput
+  connect: BrainWhereUniqueInput
+}
+
+input BrainCreateWithoutSurvivorInput {
+  value: Int
+  injured: Boolean
+}
+
+"""An edge in a connection."""
+type BrainEdge {
+  """The item at the end of the edge."""
+  node: Brain!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum BrainOrderByInput {
+  id_ASC
+  id_DESC
+  value_ASC
+  value_DESC
+  injured_ASC
+  injured_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type BrainPreviousValues {
+  id: ID!
+  value: Int
+  injured: Boolean
+}
+
+type BrainSubscriptionPayload {
+  mutation: MutationType!
+  node: Brain
+  updatedFields: [String!]
+  previousValues: BrainPreviousValues
+}
+
+input BrainSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [BrainSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [BrainSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [BrainSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: BrainWhereInput
+}
+
+input BrainUpdateInput {
+  value: Int
+  injured: Boolean
+  survivor: SurvivorUpdateOneRequiredWithoutBrainInput
+}
+
+input BrainUpdateManyMutationInput {
+  value: Int
+  injured: Boolean
+}
+
+input BrainUpdateOneWithoutSurvivorInput {
+  create: BrainCreateWithoutSurvivorInput
+  connect: BrainWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: BrainUpdateWithoutSurvivorDataInput
+  upsert: BrainUpsertWithoutSurvivorInput
+}
+
+input BrainUpdateWithoutSurvivorDataInput {
+  value: Int
+  injured: Boolean
+}
+
+input BrainUpsertWithoutSurvivorInput {
+  update: BrainUpdateWithoutSurvivorDataInput!
+  create: BrainCreateWithoutSurvivorInput!
+}
+
+input BrainWhereInput {
+  """Logical AND on all given filters."""
+  AND: [BrainWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [BrainWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [BrainWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  value: Int
+
+  """All values that are not equal to given value."""
+  value_not: Int
+
+  """All values that are contained in given list."""
+  value_in: [Int!]
+
+  """All values that are not contained in given list."""
+  value_not_in: [Int!]
+
+  """All values less than the given value."""
+  value_lt: Int
+
+  """All values less than or equal the given value."""
+  value_lte: Int
+
+  """All values greater than the given value."""
+  value_gt: Int
+
+  """All values greater than or equal the given value."""
+  value_gte: Int
+  injured: Boolean
+
+  """All values that are not equal to given value."""
+  injured_not: Boolean
+  survivor: SurvivorWhereInput
+}
+
+input BrainWhereUniqueInput {
+  id: ID
+}
+
 type Campaign implements Node {
   id: ID!
   name: String!
   createdAt: DateTime!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  settlements(where: SettlementWhereInput, orderBy: SettlementOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Settlement!]
 }
 
 """A connection to a list of items."""
@@ -37,7 +294,13 @@ type CampaignConnection {
 
 input CampaignCreateInput {
   name: String!
-  users: UserCreateManyWithoutCampaignInput
+  users: UserCreateManyWithoutCampaignsInput
+  settlements: SettlementCreateManyInput
+}
+
+input CampaignCreateManyWithoutUsersInput {
+  create: [CampaignCreateWithoutUsersInput!]
+  connect: [CampaignWhereUniqueInput!]
 }
 
 input CampaignCreateOneInput {
@@ -45,13 +308,9 @@ input CampaignCreateOneInput {
   connect: CampaignWhereUniqueInput
 }
 
-input CampaignCreateOneWithoutUsersInput {
-  create: CampaignCreateWithoutUsersInput
-  connect: CampaignWhereUniqueInput
-}
-
 input CampaignCreateWithoutUsersInput {
   name: String!
+  settlements: SettlementCreateManyInput
 }
 
 """An edge in a connection."""
@@ -121,16 +380,27 @@ input CampaignSubscriptionWhereInput {
 
 input CampaignUpdateDataInput {
   name: String
-  users: UserUpdateManyWithoutCampaignInput
+  users: UserUpdateManyWithoutCampaignsInput
+  settlements: SettlementUpdateManyInput
 }
 
 input CampaignUpdateInput {
   name: String
-  users: UserUpdateManyWithoutCampaignInput
+  users: UserUpdateManyWithoutCampaignsInput
+  settlements: SettlementUpdateManyInput
 }
 
-input CampaignUpdateManyInput {
+input CampaignUpdateManyMutationInput {
   name: String
+}
+
+input CampaignUpdateManyWithoutUsersInput {
+  create: [CampaignCreateWithoutUsersInput!]
+  connect: [CampaignWhereUniqueInput!]
+  disconnect: [CampaignWhereUniqueInput!]
+  delete: [CampaignWhereUniqueInput!]
+  update: [CampaignUpdateWithWhereUniqueWithoutUsersInput!]
+  upsert: [CampaignUpsertWithWhereUniqueWithoutUsersInput!]
 }
 
 input CampaignUpdateOneRequiredInput {
@@ -140,17 +410,14 @@ input CampaignUpdateOneRequiredInput {
   upsert: CampaignUpsertNestedInput
 }
 
-input CampaignUpdateOneWithoutUsersInput {
-  create: CampaignCreateWithoutUsersInput
-  connect: CampaignWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-  update: CampaignUpdateWithoutUsersDataInput
-  upsert: CampaignUpsertWithoutUsersInput
-}
-
 input CampaignUpdateWithoutUsersDataInput {
   name: String
+  settlements: SettlementUpdateManyInput
+}
+
+input CampaignUpdateWithWhereUniqueWithoutUsersInput {
+  where: CampaignWhereUniqueInput!
+  data: CampaignUpdateWithoutUsersDataInput!
 }
 
 input CampaignUpsertNestedInput {
@@ -158,7 +425,8 @@ input CampaignUpsertNestedInput {
   create: CampaignCreateInput!
 }
 
-input CampaignUpsertWithoutUsersInput {
+input CampaignUpsertWithWhereUniqueWithoutUsersInput {
+  where: CampaignWhereUniqueInput!
   update: CampaignUpdateWithoutUsersDataInput!
   create: CampaignCreateWithoutUsersInput!
 }
@@ -277,13 +545,1373 @@ input CampaignWhereInput {
   users_every: UserWhereInput
   users_some: UserWhereInput
   users_none: UserWhereInput
+  settlements_every: SettlementWhereInput
+  settlements_some: SettlementWhereInput
+  settlements_none: SettlementWhereInput
 }
 
 input CampaignWhereUniqueInput {
   id: ID
 }
 
+type Courage implements Node {
+  id: ID!
+  survivor: Survivor!
+  level: Int
+  stalwart: Boolean
+  prepared: Boolean
+  matchmaker: Boolean
+}
+
+"""A connection to a list of items."""
+type CourageConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CourageEdge]!
+  aggregate: AggregateCourage!
+}
+
+input CourageCreateInput {
+  level: Int
+  stalwart: Boolean
+  prepared: Boolean
+  matchmaker: Boolean
+  survivor: SurvivorCreateOneWithoutCourageInput!
+}
+
+input CourageCreateOneWithoutSurvivorInput {
+  create: CourageCreateWithoutSurvivorInput
+  connect: CourageWhereUniqueInput
+}
+
+input CourageCreateWithoutSurvivorInput {
+  level: Int
+  stalwart: Boolean
+  prepared: Boolean
+  matchmaker: Boolean
+}
+
+"""An edge in a connection."""
+type CourageEdge {
+  """The item at the end of the edge."""
+  node: Courage!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum CourageOrderByInput {
+  id_ASC
+  id_DESC
+  level_ASC
+  level_DESC
+  stalwart_ASC
+  stalwart_DESC
+  prepared_ASC
+  prepared_DESC
+  matchmaker_ASC
+  matchmaker_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type CouragePreviousValues {
+  id: ID!
+  level: Int
+  stalwart: Boolean
+  prepared: Boolean
+  matchmaker: Boolean
+}
+
+type CourageSubscriptionPayload {
+  mutation: MutationType!
+  node: Courage
+  updatedFields: [String!]
+  previousValues: CouragePreviousValues
+}
+
+input CourageSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CourageSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CourageSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CourageSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: CourageWhereInput
+}
+
+input CourageUpdateInput {
+  level: Int
+  stalwart: Boolean
+  prepared: Boolean
+  matchmaker: Boolean
+  survivor: SurvivorUpdateOneRequiredWithoutCourageInput
+}
+
+input CourageUpdateManyMutationInput {
+  level: Int
+  stalwart: Boolean
+  prepared: Boolean
+  matchmaker: Boolean
+}
+
+input CourageUpdateOneWithoutSurvivorInput {
+  create: CourageCreateWithoutSurvivorInput
+  connect: CourageWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: CourageUpdateWithoutSurvivorDataInput
+  upsert: CourageUpsertWithoutSurvivorInput
+}
+
+input CourageUpdateWithoutSurvivorDataInput {
+  level: Int
+  stalwart: Boolean
+  prepared: Boolean
+  matchmaker: Boolean
+}
+
+input CourageUpsertWithoutSurvivorInput {
+  update: CourageUpdateWithoutSurvivorDataInput!
+  create: CourageCreateWithoutSurvivorInput!
+}
+
+input CourageWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CourageWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CourageWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CourageWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  level: Int
+
+  """All values that are not equal to given value."""
+  level_not: Int
+
+  """All values that are contained in given list."""
+  level_in: [Int!]
+
+  """All values that are not contained in given list."""
+  level_not_in: [Int!]
+
+  """All values less than the given value."""
+  level_lt: Int
+
+  """All values less than or equal the given value."""
+  level_lte: Int
+
+  """All values greater than the given value."""
+  level_gt: Int
+
+  """All values greater than or equal the given value."""
+  level_gte: Int
+  stalwart: Boolean
+
+  """All values that are not equal to given value."""
+  stalwart_not: Boolean
+  prepared: Boolean
+
+  """All values that are not equal to given value."""
+  prepared_not: Boolean
+  matchmaker: Boolean
+
+  """All values that are not equal to given value."""
+  matchmaker_not: Boolean
+  survivor: SurvivorWhereInput
+}
+
+input CourageWhereUniqueInput {
+  id: ID
+}
+
 scalar DateTime
+
+type Disorder implements Node {
+  id: ID!
+  survivor: Survivor!
+  name: String
+  note: String
+}
+
+"""A connection to a list of items."""
+type DisorderConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DisorderEdge]!
+  aggregate: AggregateDisorder!
+}
+
+input DisorderCreateInput {
+  name: String
+  note: String
+  survivor: SurvivorCreateOneWithoutDisordersInput!
+}
+
+input DisorderCreateManyWithoutSurvivorInput {
+  create: [DisorderCreateWithoutSurvivorInput!]
+  connect: [DisorderWhereUniqueInput!]
+}
+
+input DisorderCreateWithoutSurvivorInput {
+  name: String
+  note: String
+}
+
+"""An edge in a connection."""
+type DisorderEdge {
+  """The item at the end of the edge."""
+  node: Disorder!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum DisorderOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  note_ASC
+  note_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type DisorderPreviousValues {
+  id: ID!
+  name: String
+  note: String
+}
+
+type DisorderSubscriptionPayload {
+  mutation: MutationType!
+  node: Disorder
+  updatedFields: [String!]
+  previousValues: DisorderPreviousValues
+}
+
+input DisorderSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DisorderSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DisorderSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DisorderSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: DisorderWhereInput
+}
+
+input DisorderUpdateInput {
+  name: String
+  note: String
+  survivor: SurvivorUpdateOneRequiredWithoutDisordersInput
+}
+
+input DisorderUpdateManyMutationInput {
+  name: String
+  note: String
+}
+
+input DisorderUpdateManyWithoutSurvivorInput {
+  create: [DisorderCreateWithoutSurvivorInput!]
+  connect: [DisorderWhereUniqueInput!]
+  disconnect: [DisorderWhereUniqueInput!]
+  delete: [DisorderWhereUniqueInput!]
+  update: [DisorderUpdateWithWhereUniqueWithoutSurvivorInput!]
+  upsert: [DisorderUpsertWithWhereUniqueWithoutSurvivorInput!]
+}
+
+input DisorderUpdateWithoutSurvivorDataInput {
+  name: String
+  note: String
+}
+
+input DisorderUpdateWithWhereUniqueWithoutSurvivorInput {
+  where: DisorderWhereUniqueInput!
+  data: DisorderUpdateWithoutSurvivorDataInput!
+}
+
+input DisorderUpsertWithWhereUniqueWithoutSurvivorInput {
+  where: DisorderWhereUniqueInput!
+  update: DisorderUpdateWithoutSurvivorDataInput!
+  create: DisorderCreateWithoutSurvivorInput!
+}
+
+input DisorderWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DisorderWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DisorderWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DisorderWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  note: String
+
+  """All values that are not equal to given value."""
+  note_not: String
+
+  """All values that are contained in given list."""
+  note_in: [String!]
+
+  """All values that are not contained in given list."""
+  note_not_in: [String!]
+
+  """All values less than the given value."""
+  note_lt: String
+
+  """All values less than or equal the given value."""
+  note_lte: String
+
+  """All values greater than the given value."""
+  note_gt: String
+
+  """All values greater than or equal the given value."""
+  note_gte: String
+
+  """All values containing the given string."""
+  note_contains: String
+
+  """All values not containing the given string."""
+  note_not_contains: String
+
+  """All values starting with the given string."""
+  note_starts_with: String
+
+  """All values not starting with the given string."""
+  note_not_starts_with: String
+
+  """All values ending with the given string."""
+  note_ends_with: String
+
+  """All values not ending with the given string."""
+  note_not_ends_with: String
+  survivor: SurvivorWhereInput
+}
+
+input DisorderWhereUniqueInput {
+  id: ID
+}
+
+type Feature implements Node {
+  id: ID!
+  survivor: Survivor!
+  name: String
+  note: String
+  lifetime: Boolean
+}
+
+"""A connection to a list of items."""
+type FeatureConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FeatureEdge]!
+  aggregate: AggregateFeature!
+}
+
+input FeatureCreateInput {
+  name: String
+  note: String
+  lifetime: Boolean
+  survivor: SurvivorCreateOneWithoutFeaturesInput!
+}
+
+input FeatureCreateManyWithoutSurvivorInput {
+  create: [FeatureCreateWithoutSurvivorInput!]
+  connect: [FeatureWhereUniqueInput!]
+}
+
+input FeatureCreateWithoutSurvivorInput {
+  name: String
+  note: String
+  lifetime: Boolean
+}
+
+"""An edge in a connection."""
+type FeatureEdge {
+  """The item at the end of the edge."""
+  node: Feature!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum FeatureOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  note_ASC
+  note_DESC
+  lifetime_ASC
+  lifetime_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type FeaturePreviousValues {
+  id: ID!
+  name: String
+  note: String
+  lifetime: Boolean
+}
+
+type FeatureSubscriptionPayload {
+  mutation: MutationType!
+  node: Feature
+  updatedFields: [String!]
+  previousValues: FeaturePreviousValues
+}
+
+input FeatureSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FeatureSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FeatureSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FeatureSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: FeatureWhereInput
+}
+
+input FeatureUpdateInput {
+  name: String
+  note: String
+  lifetime: Boolean
+  survivor: SurvivorUpdateOneRequiredWithoutFeaturesInput
+}
+
+input FeatureUpdateManyMutationInput {
+  name: String
+  note: String
+  lifetime: Boolean
+}
+
+input FeatureUpdateManyWithoutSurvivorInput {
+  create: [FeatureCreateWithoutSurvivorInput!]
+  connect: [FeatureWhereUniqueInput!]
+  disconnect: [FeatureWhereUniqueInput!]
+  delete: [FeatureWhereUniqueInput!]
+  update: [FeatureUpdateWithWhereUniqueWithoutSurvivorInput!]
+  upsert: [FeatureUpsertWithWhereUniqueWithoutSurvivorInput!]
+}
+
+input FeatureUpdateWithoutSurvivorDataInput {
+  name: String
+  note: String
+  lifetime: Boolean
+}
+
+input FeatureUpdateWithWhereUniqueWithoutSurvivorInput {
+  where: FeatureWhereUniqueInput!
+  data: FeatureUpdateWithoutSurvivorDataInput!
+}
+
+input FeatureUpsertWithWhereUniqueWithoutSurvivorInput {
+  where: FeatureWhereUniqueInput!
+  update: FeatureUpdateWithoutSurvivorDataInput!
+  create: FeatureCreateWithoutSurvivorInput!
+}
+
+input FeatureWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FeatureWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FeatureWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FeatureWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  note: String
+
+  """All values that are not equal to given value."""
+  note_not: String
+
+  """All values that are contained in given list."""
+  note_in: [String!]
+
+  """All values that are not contained in given list."""
+  note_not_in: [String!]
+
+  """All values less than the given value."""
+  note_lt: String
+
+  """All values less than or equal the given value."""
+  note_lte: String
+
+  """All values greater than the given value."""
+  note_gt: String
+
+  """All values greater than or equal the given value."""
+  note_gte: String
+
+  """All values containing the given string."""
+  note_contains: String
+
+  """All values not containing the given string."""
+  note_not_contains: String
+
+  """All values starting with the given string."""
+  note_starts_with: String
+
+  """All values not starting with the given string."""
+  note_not_starts_with: String
+
+  """All values ending with the given string."""
+  note_ends_with: String
+
+  """All values not ending with the given string."""
+  note_not_ends_with: String
+  lifetime: Boolean
+
+  """All values that are not equal to given value."""
+  lifetime_not: Boolean
+  survivor: SurvivorWhereInput
+}
+
+input FeatureWhereUniqueInput {
+  id: ID
+}
+
+type FightingArt implements Node {
+  id: ID!
+  survivor: Survivor!
+  name: String
+  note: String
+}
+
+"""A connection to a list of items."""
+type FightingArtConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FightingArtEdge]!
+  aggregate: AggregateFightingArt!
+}
+
+input FightingArtCreateInput {
+  name: String
+  note: String
+  survivor: SurvivorCreateOneWithoutFightingArtsInput!
+}
+
+input FightingArtCreateManyWithoutSurvivorInput {
+  create: [FightingArtCreateWithoutSurvivorInput!]
+  connect: [FightingArtWhereUniqueInput!]
+}
+
+input FightingArtCreateWithoutSurvivorInput {
+  name: String
+  note: String
+}
+
+"""An edge in a connection."""
+type FightingArtEdge {
+  """The item at the end of the edge."""
+  node: FightingArt!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum FightingArtOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  note_ASC
+  note_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type FightingArtPreviousValues {
+  id: ID!
+  name: String
+  note: String
+}
+
+type FightingArtSubscriptionPayload {
+  mutation: MutationType!
+  node: FightingArt
+  updatedFields: [String!]
+  previousValues: FightingArtPreviousValues
+}
+
+input FightingArtSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FightingArtSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FightingArtSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FightingArtSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: FightingArtWhereInput
+}
+
+input FightingArtUpdateInput {
+  name: String
+  note: String
+  survivor: SurvivorUpdateOneRequiredWithoutFightingArtsInput
+}
+
+input FightingArtUpdateManyMutationInput {
+  name: String
+  note: String
+}
+
+input FightingArtUpdateManyWithoutSurvivorInput {
+  create: [FightingArtCreateWithoutSurvivorInput!]
+  connect: [FightingArtWhereUniqueInput!]
+  disconnect: [FightingArtWhereUniqueInput!]
+  delete: [FightingArtWhereUniqueInput!]
+  update: [FightingArtUpdateWithWhereUniqueWithoutSurvivorInput!]
+  upsert: [FightingArtUpsertWithWhereUniqueWithoutSurvivorInput!]
+}
+
+input FightingArtUpdateWithoutSurvivorDataInput {
+  name: String
+  note: String
+}
+
+input FightingArtUpdateWithWhereUniqueWithoutSurvivorInput {
+  where: FightingArtWhereUniqueInput!
+  data: FightingArtUpdateWithoutSurvivorDataInput!
+}
+
+input FightingArtUpsertWithWhereUniqueWithoutSurvivorInput {
+  where: FightingArtWhereUniqueInput!
+  update: FightingArtUpdateWithoutSurvivorDataInput!
+  create: FightingArtCreateWithoutSurvivorInput!
+}
+
+input FightingArtWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FightingArtWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FightingArtWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FightingArtWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  note: String
+
+  """All values that are not equal to given value."""
+  note_not: String
+
+  """All values that are contained in given list."""
+  note_in: [String!]
+
+  """All values that are not contained in given list."""
+  note_not_in: [String!]
+
+  """All values less than the given value."""
+  note_lt: String
+
+  """All values less than or equal the given value."""
+  note_lte: String
+
+  """All values greater than the given value."""
+  note_gt: String
+
+  """All values greater than or equal the given value."""
+  note_gte: String
+
+  """All values containing the given string."""
+  note_contains: String
+
+  """All values not containing the given string."""
+  note_not_contains: String
+
+  """All values starting with the given string."""
+  note_starts_with: String
+
+  """All values not starting with the given string."""
+  note_not_starts_with: String
+
+  """All values ending with the given string."""
+  note_ends_with: String
+
+  """All values not ending with the given string."""
+  note_not_ends_with: String
+  survivor: SurvivorWhereInput
+}
+
+input FightingArtWhereUniqueInput {
+  id: ID
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+type HitLocation implements Node {
+  id: ID!
+  survivor: Survivor!
+  type: String!
+  armor: Int
+  damage: Int
+}
+
+"""A connection to a list of items."""
+type HitLocationConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [HitLocationEdge]!
+  aggregate: AggregateHitLocation!
+}
+
+input HitLocationCreateInput {
+  type: String!
+  armor: Int
+  damage: Int
+  survivor: SurvivorCreateOneWithoutHitLocationsInput!
+}
+
+input HitLocationCreateManyWithoutSurvivorInput {
+  create: [HitLocationCreateWithoutSurvivorInput!]
+  connect: [HitLocationWhereUniqueInput!]
+}
+
+input HitLocationCreateWithoutSurvivorInput {
+  type: String!
+  armor: Int
+  damage: Int
+}
+
+"""An edge in a connection."""
+type HitLocationEdge {
+  """The item at the end of the edge."""
+  node: HitLocation!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum HitLocationOrderByInput {
+  id_ASC
+  id_DESC
+  type_ASC
+  type_DESC
+  armor_ASC
+  armor_DESC
+  damage_ASC
+  damage_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type HitLocationPreviousValues {
+  id: ID!
+  type: String!
+  armor: Int
+  damage: Int
+}
+
+type HitLocationSubscriptionPayload {
+  mutation: MutationType!
+  node: HitLocation
+  updatedFields: [String!]
+  previousValues: HitLocationPreviousValues
+}
+
+input HitLocationSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [HitLocationSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [HitLocationSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [HitLocationSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: HitLocationWhereInput
+}
+
+input HitLocationUpdateInput {
+  type: String
+  armor: Int
+  damage: Int
+  survivor: SurvivorUpdateOneRequiredWithoutHitLocationsInput
+}
+
+input HitLocationUpdateManyMutationInput {
+  type: String
+  armor: Int
+  damage: Int
+}
+
+input HitLocationUpdateManyWithoutSurvivorInput {
+  create: [HitLocationCreateWithoutSurvivorInput!]
+  connect: [HitLocationWhereUniqueInput!]
+  disconnect: [HitLocationWhereUniqueInput!]
+  delete: [HitLocationWhereUniqueInput!]
+  update: [HitLocationUpdateWithWhereUniqueWithoutSurvivorInput!]
+  upsert: [HitLocationUpsertWithWhereUniqueWithoutSurvivorInput!]
+}
+
+input HitLocationUpdateWithoutSurvivorDataInput {
+  type: String
+  armor: Int
+  damage: Int
+}
+
+input HitLocationUpdateWithWhereUniqueWithoutSurvivorInput {
+  where: HitLocationWhereUniqueInput!
+  data: HitLocationUpdateWithoutSurvivorDataInput!
+}
+
+input HitLocationUpsertWithWhereUniqueWithoutSurvivorInput {
+  where: HitLocationWhereUniqueInput!
+  update: HitLocationUpdateWithoutSurvivorDataInput!
+  create: HitLocationCreateWithoutSurvivorInput!
+}
+
+input HitLocationWhereInput {
+  """Logical AND on all given filters."""
+  AND: [HitLocationWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [HitLocationWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [HitLocationWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  type: String
+
+  """All values that are not equal to given value."""
+  type_not: String
+
+  """All values that are contained in given list."""
+  type_in: [String!]
+
+  """All values that are not contained in given list."""
+  type_not_in: [String!]
+
+  """All values less than the given value."""
+  type_lt: String
+
+  """All values less than or equal the given value."""
+  type_lte: String
+
+  """All values greater than the given value."""
+  type_gt: String
+
+  """All values greater than or equal the given value."""
+  type_gte: String
+
+  """All values containing the given string."""
+  type_contains: String
+
+  """All values not containing the given string."""
+  type_not_contains: String
+
+  """All values starting with the given string."""
+  type_starts_with: String
+
+  """All values not starting with the given string."""
+  type_not_starts_with: String
+
+  """All values ending with the given string."""
+  type_ends_with: String
+
+  """All values not ending with the given string."""
+  type_not_ends_with: String
+  armor: Int
+
+  """All values that are not equal to given value."""
+  armor_not: Int
+
+  """All values that are contained in given list."""
+  armor_in: [Int!]
+
+  """All values that are not contained in given list."""
+  armor_not_in: [Int!]
+
+  """All values less than the given value."""
+  armor_lt: Int
+
+  """All values less than or equal the given value."""
+  armor_lte: Int
+
+  """All values greater than the given value."""
+  armor_gt: Int
+
+  """All values greater than or equal the given value."""
+  armor_gte: Int
+  damage: Int
+
+  """All values that are not equal to given value."""
+  damage_not: Int
+
+  """All values that are contained in given list."""
+  damage_in: [Int!]
+
+  """All values that are not contained in given list."""
+  damage_not_in: [Int!]
+
+  """All values less than the given value."""
+  damage_lt: Int
+
+  """All values less than or equal the given value."""
+  damage_lte: Int
+
+  """All values greater than the given value."""
+  damage_gt: Int
+
+  """All values greater than or equal the given value."""
+  damage_gte: Int
+  survivor: SurvivorWhereInput
+}
+
+input HitLocationWhereUniqueInput {
+  id: ID
+}
 
 """
 The `Long` scalar type represents non-fractional signed whole numeric values.
@@ -291,25 +1919,445 @@ Long can represent values between -(2^63) and 2^63 - 1.
 """
 scalar Long
 
+type Movement implements Node {
+  id: ID!
+  survivor: Survivor!
+  value: Int
+  accuracy: Int
+  strength: Int
+  evasion: Int
+  luck: Int
+  speed: Int
+}
+
+"""A connection to a list of items."""
+type MovementConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [MovementEdge]!
+  aggregate: AggregateMovement!
+}
+
+input MovementCreateInput {
+  value: Int
+  accuracy: Int
+  strength: Int
+  evasion: Int
+  luck: Int
+  speed: Int
+  survivor: SurvivorCreateOneWithoutMovementInput!
+}
+
+input MovementCreateOneWithoutSurvivorInput {
+  create: MovementCreateWithoutSurvivorInput
+  connect: MovementWhereUniqueInput
+}
+
+input MovementCreateWithoutSurvivorInput {
+  value: Int
+  accuracy: Int
+  strength: Int
+  evasion: Int
+  luck: Int
+  speed: Int
+}
+
+"""An edge in a connection."""
+type MovementEdge {
+  """The item at the end of the edge."""
+  node: Movement!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum MovementOrderByInput {
+  id_ASC
+  id_DESC
+  value_ASC
+  value_DESC
+  accuracy_ASC
+  accuracy_DESC
+  strength_ASC
+  strength_DESC
+  evasion_ASC
+  evasion_DESC
+  luck_ASC
+  luck_DESC
+  speed_ASC
+  speed_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type MovementPreviousValues {
+  id: ID!
+  value: Int
+  accuracy: Int
+  strength: Int
+  evasion: Int
+  luck: Int
+  speed: Int
+}
+
+type MovementSubscriptionPayload {
+  mutation: MutationType!
+  node: Movement
+  updatedFields: [String!]
+  previousValues: MovementPreviousValues
+}
+
+input MovementSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [MovementSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [MovementSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [MovementSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: MovementWhereInput
+}
+
+input MovementUpdateInput {
+  value: Int
+  accuracy: Int
+  strength: Int
+  evasion: Int
+  luck: Int
+  speed: Int
+  survivor: SurvivorUpdateOneRequiredWithoutMovementInput
+}
+
+input MovementUpdateManyMutationInput {
+  value: Int
+  accuracy: Int
+  strength: Int
+  evasion: Int
+  luck: Int
+  speed: Int
+}
+
+input MovementUpdateOneWithoutSurvivorInput {
+  create: MovementCreateWithoutSurvivorInput
+  connect: MovementWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: MovementUpdateWithoutSurvivorDataInput
+  upsert: MovementUpsertWithoutSurvivorInput
+}
+
+input MovementUpdateWithoutSurvivorDataInput {
+  value: Int
+  accuracy: Int
+  strength: Int
+  evasion: Int
+  luck: Int
+  speed: Int
+}
+
+input MovementUpsertWithoutSurvivorInput {
+  update: MovementUpdateWithoutSurvivorDataInput!
+  create: MovementCreateWithoutSurvivorInput!
+}
+
+input MovementWhereInput {
+  """Logical AND on all given filters."""
+  AND: [MovementWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [MovementWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [MovementWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  value: Int
+
+  """All values that are not equal to given value."""
+  value_not: Int
+
+  """All values that are contained in given list."""
+  value_in: [Int!]
+
+  """All values that are not contained in given list."""
+  value_not_in: [Int!]
+
+  """All values less than the given value."""
+  value_lt: Int
+
+  """All values less than or equal the given value."""
+  value_lte: Int
+
+  """All values greater than the given value."""
+  value_gt: Int
+
+  """All values greater than or equal the given value."""
+  value_gte: Int
+  accuracy: Int
+
+  """All values that are not equal to given value."""
+  accuracy_not: Int
+
+  """All values that are contained in given list."""
+  accuracy_in: [Int!]
+
+  """All values that are not contained in given list."""
+  accuracy_not_in: [Int!]
+
+  """All values less than the given value."""
+  accuracy_lt: Int
+
+  """All values less than or equal the given value."""
+  accuracy_lte: Int
+
+  """All values greater than the given value."""
+  accuracy_gt: Int
+
+  """All values greater than or equal the given value."""
+  accuracy_gte: Int
+  strength: Int
+
+  """All values that are not equal to given value."""
+  strength_not: Int
+
+  """All values that are contained in given list."""
+  strength_in: [Int!]
+
+  """All values that are not contained in given list."""
+  strength_not_in: [Int!]
+
+  """All values less than the given value."""
+  strength_lt: Int
+
+  """All values less than or equal the given value."""
+  strength_lte: Int
+
+  """All values greater than the given value."""
+  strength_gt: Int
+
+  """All values greater than or equal the given value."""
+  strength_gte: Int
+  evasion: Int
+
+  """All values that are not equal to given value."""
+  evasion_not: Int
+
+  """All values that are contained in given list."""
+  evasion_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evasion_not_in: [Int!]
+
+  """All values less than the given value."""
+  evasion_lt: Int
+
+  """All values less than or equal the given value."""
+  evasion_lte: Int
+
+  """All values greater than the given value."""
+  evasion_gt: Int
+
+  """All values greater than or equal the given value."""
+  evasion_gte: Int
+  luck: Int
+
+  """All values that are not equal to given value."""
+  luck_not: Int
+
+  """All values that are contained in given list."""
+  luck_in: [Int!]
+
+  """All values that are not contained in given list."""
+  luck_not_in: [Int!]
+
+  """All values less than the given value."""
+  luck_lt: Int
+
+  """All values less than or equal the given value."""
+  luck_lte: Int
+
+  """All values greater than the given value."""
+  luck_gt: Int
+
+  """All values greater than or equal the given value."""
+  luck_gte: Int
+  speed: Int
+
+  """All values that are not equal to given value."""
+  speed_not: Int
+
+  """All values that are contained in given list."""
+  speed_in: [Int!]
+
+  """All values that are not contained in given list."""
+  speed_not_in: [Int!]
+
+  """All values less than the given value."""
+  speed_lt: Int
+
+  """All values less than or equal the given value."""
+  speed_lte: Int
+
+  """All values greater than the given value."""
+  speed_gt: Int
+
+  """All values greater than or equal the given value."""
+  speed_gte: Int
+  survivor: SurvivorWhereInput
+}
+
+input MovementWhereUniqueInput {
+  id: ID
+}
+
 type Mutation {
   createUser(data: UserCreateInput!): User!
   createSurvivor(data: SurvivorCreateInput!): Survivor!
+  createSurvival(data: SurvivalCreateInput!): Survival!
+  createMovement(data: MovementCreateInput!): Movement!
+  createBrain(data: BrainCreateInput!): Brain!
+  createHitLocation(data: HitLocationCreateInput!): HitLocation!
+  createWeapon(data: WeaponCreateInput!): Weapon!
+  createCourage(data: CourageCreateInput!): Courage!
+  createUnderstanding(data: UnderstandingCreateInput!): Understanding!
+  createFightingArt(data: FightingArtCreateInput!): FightingArt!
+  createDisorder(data: DisorderCreateInput!): Disorder!
+  createFeature(data: FeatureCreateInput!): Feature!
   createCampaign(data: CampaignCreateInput!): Campaign!
+  createSettlement(data: SettlementCreateInput!): Settlement!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateSurvivor(data: SurvivorUpdateInput!, where: SurvivorWhereUniqueInput!): Survivor
+  updateSurvival(data: SurvivalUpdateInput!, where: SurvivalWhereUniqueInput!): Survival
+  updateMovement(data: MovementUpdateInput!, where: MovementWhereUniqueInput!): Movement
+  updateBrain(data: BrainUpdateInput!, where: BrainWhereUniqueInput!): Brain
+  updateHitLocation(data: HitLocationUpdateInput!, where: HitLocationWhereUniqueInput!): HitLocation
+  updateWeapon(data: WeaponUpdateInput!, where: WeaponWhereUniqueInput!): Weapon
+  updateCourage(data: CourageUpdateInput!, where: CourageWhereUniqueInput!): Courage
+  updateUnderstanding(data: UnderstandingUpdateInput!, where: UnderstandingWhereUniqueInput!): Understanding
+  updateFightingArt(data: FightingArtUpdateInput!, where: FightingArtWhereUniqueInput!): FightingArt
+  updateDisorder(data: DisorderUpdateInput!, where: DisorderWhereUniqueInput!): Disorder
+  updateFeature(data: FeatureUpdateInput!, where: FeatureWhereUniqueInput!): Feature
   updateCampaign(data: CampaignUpdateInput!, where: CampaignWhereUniqueInput!): Campaign
+  updateSettlement(data: SettlementUpdateInput!, where: SettlementWhereUniqueInput!): Settlement
   deleteUser(where: UserWhereUniqueInput!): User
   deleteSurvivor(where: SurvivorWhereUniqueInput!): Survivor
+  deleteSurvival(where: SurvivalWhereUniqueInput!): Survival
+  deleteMovement(where: MovementWhereUniqueInput!): Movement
+  deleteBrain(where: BrainWhereUniqueInput!): Brain
+  deleteHitLocation(where: HitLocationWhereUniqueInput!): HitLocation
+  deleteWeapon(where: WeaponWhereUniqueInput!): Weapon
+  deleteCourage(where: CourageWhereUniqueInput!): Courage
+  deleteUnderstanding(where: UnderstandingWhereUniqueInput!): Understanding
+  deleteFightingArt(where: FightingArtWhereUniqueInput!): FightingArt
+  deleteDisorder(where: DisorderWhereUniqueInput!): Disorder
+  deleteFeature(where: FeatureWhereUniqueInput!): Feature
   deleteCampaign(where: CampaignWhereUniqueInput!): Campaign
+  deleteSettlement(where: SettlementWhereUniqueInput!): Settlement
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertSurvivor(where: SurvivorWhereUniqueInput!, create: SurvivorCreateInput!, update: SurvivorUpdateInput!): Survivor!
+  upsertSurvival(where: SurvivalWhereUniqueInput!, create: SurvivalCreateInput!, update: SurvivalUpdateInput!): Survival!
+  upsertMovement(where: MovementWhereUniqueInput!, create: MovementCreateInput!, update: MovementUpdateInput!): Movement!
+  upsertBrain(where: BrainWhereUniqueInput!, create: BrainCreateInput!, update: BrainUpdateInput!): Brain!
+  upsertHitLocation(where: HitLocationWhereUniqueInput!, create: HitLocationCreateInput!, update: HitLocationUpdateInput!): HitLocation!
+  upsertWeapon(where: WeaponWhereUniqueInput!, create: WeaponCreateInput!, update: WeaponUpdateInput!): Weapon!
+  upsertCourage(where: CourageWhereUniqueInput!, create: CourageCreateInput!, update: CourageUpdateInput!): Courage!
+  upsertUnderstanding(where: UnderstandingWhereUniqueInput!, create: UnderstandingCreateInput!, update: UnderstandingUpdateInput!): Understanding!
+  upsertFightingArt(where: FightingArtWhereUniqueInput!, create: FightingArtCreateInput!, update: FightingArtUpdateInput!): FightingArt!
+  upsertDisorder(where: DisorderWhereUniqueInput!, create: DisorderCreateInput!, update: DisorderUpdateInput!): Disorder!
+  upsertFeature(where: FeatureWhereUniqueInput!, create: FeatureCreateInput!, update: FeatureUpdateInput!): Feature!
   upsertCampaign(where: CampaignWhereUniqueInput!, create: CampaignCreateInput!, update: CampaignUpdateInput!): Campaign!
-  updateManyUsers(data: UserUpdateManyInput!, where: UserWhereInput): BatchPayload!
-  updateManySurvivors(data: SurvivorUpdateManyInput!, where: SurvivorWhereInput): BatchPayload!
-  updateManyCampaigns(data: CampaignUpdateManyInput!, where: CampaignWhereInput): BatchPayload!
+  upsertSettlement(where: SettlementWhereUniqueInput!, create: SettlementCreateInput!, update: SettlementUpdateInput!): Settlement!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManySurvivors(data: SurvivorUpdateManyMutationInput!, where: SurvivorWhereInput): BatchPayload!
+  updateManySurvivals(data: SurvivalUpdateManyMutationInput!, where: SurvivalWhereInput): BatchPayload!
+  updateManyMovements(data: MovementUpdateManyMutationInput!, where: MovementWhereInput): BatchPayload!
+  updateManyBrains(data: BrainUpdateManyMutationInput!, where: BrainWhereInput): BatchPayload!
+  updateManyHitLocations(data: HitLocationUpdateManyMutationInput!, where: HitLocationWhereInput): BatchPayload!
+  updateManyWeapons(data: WeaponUpdateManyMutationInput!, where: WeaponWhereInput): BatchPayload!
+  updateManyCourages(data: CourageUpdateManyMutationInput!, where: CourageWhereInput): BatchPayload!
+  updateManyUnderstandings(data: UnderstandingUpdateManyMutationInput!, where: UnderstandingWhereInput): BatchPayload!
+  updateManyFightingArts(data: FightingArtUpdateManyMutationInput!, where: FightingArtWhereInput): BatchPayload!
+  updateManyDisorders(data: DisorderUpdateManyMutationInput!, where: DisorderWhereInput): BatchPayload!
+  updateManyFeatures(data: FeatureUpdateManyMutationInput!, where: FeatureWhereInput): BatchPayload!
+  updateManyCampaigns(data: CampaignUpdateManyMutationInput!, where: CampaignWhereInput): BatchPayload!
+  updateManySettlements(data: SettlementUpdateManyMutationInput!, where: SettlementWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManySurvivors(where: SurvivorWhereInput): BatchPayload!
+  deleteManySurvivals(where: SurvivalWhereInput): BatchPayload!
+  deleteManyMovements(where: MovementWhereInput): BatchPayload!
+  deleteManyBrains(where: BrainWhereInput): BatchPayload!
+  deleteManyHitLocations(where: HitLocationWhereInput): BatchPayload!
+  deleteManyWeapons(where: WeaponWhereInput): BatchPayload!
+  deleteManyCourages(where: CourageWhereInput): BatchPayload!
+  deleteManyUnderstandings(where: UnderstandingWhereInput): BatchPayload!
+  deleteManyFightingArts(where: FightingArtWhereInput): BatchPayload!
+  deleteManyDisorders(where: DisorderWhereInput): BatchPayload!
+  deleteManyFeatures(where: FeatureWhereInput): BatchPayload!
   deleteManyCampaigns(where: CampaignWhereInput): BatchPayload!
+  deleteManySettlements(where: SettlementWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -342,13 +2390,46 @@ type PageInfo {
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   survivors(where: SurvivorWhereInput, orderBy: SurvivorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Survivor]!
+  survivals(where: SurvivalWhereInput, orderBy: SurvivalOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Survival]!
+  movements(where: MovementWhereInput, orderBy: MovementOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Movement]!
+  brains(where: BrainWhereInput, orderBy: BrainOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Brain]!
+  hitLocations(where: HitLocationWhereInput, orderBy: HitLocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [HitLocation]!
+  weapons(where: WeaponWhereInput, orderBy: WeaponOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Weapon]!
+  courages(where: CourageWhereInput, orderBy: CourageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Courage]!
+  understandings(where: UnderstandingWhereInput, orderBy: UnderstandingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Understanding]!
+  fightingArts(where: FightingArtWhereInput, orderBy: FightingArtOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FightingArt]!
+  disorders(where: DisorderWhereInput, orderBy: DisorderOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Disorder]!
+  features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature]!
   campaigns(where: CampaignWhereInput, orderBy: CampaignOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Campaign]!
+  settlements(where: SettlementWhereInput, orderBy: SettlementOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Settlement]!
   user(where: UserWhereUniqueInput!): User
   survivor(where: SurvivorWhereUniqueInput!): Survivor
+  survival(where: SurvivalWhereUniqueInput!): Survival
+  movement(where: MovementWhereUniqueInput!): Movement
+  brain(where: BrainWhereUniqueInput!): Brain
+  hitLocation(where: HitLocationWhereUniqueInput!): HitLocation
+  weapon(where: WeaponWhereUniqueInput!): Weapon
+  courage(where: CourageWhereUniqueInput!): Courage
+  understanding(where: UnderstandingWhereUniqueInput!): Understanding
+  fightingArt(where: FightingArtWhereUniqueInput!): FightingArt
+  disorder(where: DisorderWhereUniqueInput!): Disorder
+  feature(where: FeatureWhereUniqueInput!): Feature
   campaign(where: CampaignWhereUniqueInput!): Campaign
+  settlement(where: SettlementWhereUniqueInput!): Settlement
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   survivorsConnection(where: SurvivorWhereInput, orderBy: SurvivorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SurvivorConnection!
+  survivalsConnection(where: SurvivalWhereInput, orderBy: SurvivalOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SurvivalConnection!
+  movementsConnection(where: MovementWhereInput, orderBy: MovementOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MovementConnection!
+  brainsConnection(where: BrainWhereInput, orderBy: BrainOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BrainConnection!
+  hitLocationsConnection(where: HitLocationWhereInput, orderBy: HitLocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HitLocationConnection!
+  weaponsConnection(where: WeaponWhereInput, orderBy: WeaponOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WeaponConnection!
+  couragesConnection(where: CourageWhereInput, orderBy: CourageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CourageConnection!
+  understandingsConnection(where: UnderstandingWhereInput, orderBy: UnderstandingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UnderstandingConnection!
+  fightingArtsConnection(where: FightingArtWhereInput, orderBy: FightingArtOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FightingArtConnection!
+  disordersConnection(where: DisorderWhereInput, orderBy: DisorderOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DisorderConnection!
+  featuresConnection(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FeatureConnection!
   campaignsConnection(where: CampaignWhereInput, orderBy: CampaignOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CampaignConnection!
+  settlementsConnection(where: SettlementWhereInput, orderBy: SettlementOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SettlementConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -357,18 +2438,517 @@ type Query {
   ): Node
 }
 
+type Settlement implements Node {
+  id: ID!
+  name: String!
+  population: Int
+}
+
+"""A connection to a list of items."""
+type SettlementConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [SettlementEdge]!
+  aggregate: AggregateSettlement!
+}
+
+input SettlementCreateInput {
+  name: String!
+  population: Int
+}
+
+input SettlementCreateManyInput {
+  create: [SettlementCreateInput!]
+  connect: [SettlementWhereUniqueInput!]
+}
+
+"""An edge in a connection."""
+type SettlementEdge {
+  """The item at the end of the edge."""
+  node: Settlement!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum SettlementOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  population_ASC
+  population_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type SettlementPreviousValues {
+  id: ID!
+  name: String!
+  population: Int
+}
+
+type SettlementSubscriptionPayload {
+  mutation: MutationType!
+  node: Settlement
+  updatedFields: [String!]
+  previousValues: SettlementPreviousValues
+}
+
+input SettlementSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SettlementSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SettlementSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SettlementSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: SettlementWhereInput
+}
+
+input SettlementUpdateDataInput {
+  name: String
+  population: Int
+}
+
+input SettlementUpdateInput {
+  name: String
+  population: Int
+}
+
+input SettlementUpdateManyInput {
+  create: [SettlementCreateInput!]
+  connect: [SettlementWhereUniqueInput!]
+  disconnect: [SettlementWhereUniqueInput!]
+  delete: [SettlementWhereUniqueInput!]
+  update: [SettlementUpdateWithWhereUniqueNestedInput!]
+  upsert: [SettlementUpsertWithWhereUniqueNestedInput!]
+}
+
+input SettlementUpdateManyMutationInput {
+  name: String
+  population: Int
+}
+
+input SettlementUpdateWithWhereUniqueNestedInput {
+  where: SettlementWhereUniqueInput!
+  data: SettlementUpdateDataInput!
+}
+
+input SettlementUpsertWithWhereUniqueNestedInput {
+  where: SettlementWhereUniqueInput!
+  update: SettlementUpdateDataInput!
+  create: SettlementCreateInput!
+}
+
+input SettlementWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SettlementWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SettlementWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SettlementWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  population: Int
+
+  """All values that are not equal to given value."""
+  population_not: Int
+
+  """All values that are contained in given list."""
+  population_in: [Int!]
+
+  """All values that are not contained in given list."""
+  population_not_in: [Int!]
+
+  """All values less than the given value."""
+  population_lt: Int
+
+  """All values less than or equal the given value."""
+  population_lte: Int
+
+  """All values greater than the given value."""
+  population_gt: Int
+
+  """All values greater than or equal the given value."""
+  population_gte: Int
+}
+
+input SettlementWhereUniqueInput {
+  id: ID
+}
+
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   survivor(where: SurvivorSubscriptionWhereInput): SurvivorSubscriptionPayload
+  survival(where: SurvivalSubscriptionWhereInput): SurvivalSubscriptionPayload
+  movement(where: MovementSubscriptionWhereInput): MovementSubscriptionPayload
+  brain(where: BrainSubscriptionWhereInput): BrainSubscriptionPayload
+  hitLocation(where: HitLocationSubscriptionWhereInput): HitLocationSubscriptionPayload
+  weapon(where: WeaponSubscriptionWhereInput): WeaponSubscriptionPayload
+  courage(where: CourageSubscriptionWhereInput): CourageSubscriptionPayload
+  understanding(where: UnderstandingSubscriptionWhereInput): UnderstandingSubscriptionPayload
+  fightingArt(where: FightingArtSubscriptionWhereInput): FightingArtSubscriptionPayload
+  disorder(where: DisorderSubscriptionWhereInput): DisorderSubscriptionPayload
+  feature(where: FeatureSubscriptionWhereInput): FeatureSubscriptionPayload
   campaign(where: CampaignSubscriptionWhereInput): CampaignSubscriptionPayload
+  settlement(where: SettlementSubscriptionWhereInput): SettlementSubscriptionPayload
+}
+
+type Survival implements Node {
+  id: ID!
+  survivor: Survivor!
+  value: Int
+  skills: [String!]!
+  canSpend: Boolean
+}
+
+"""A connection to a list of items."""
+type SurvivalConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [SurvivalEdge]!
+  aggregate: AggregateSurvival!
+}
+
+input SurvivalCreateInput {
+  value: Int
+  canSpend: Boolean
+  skills: SurvivalCreateskillsInput
+  survivor: SurvivorCreateOneWithoutSurvivalInput!
+}
+
+input SurvivalCreateOneWithoutSurvivorInput {
+  create: SurvivalCreateWithoutSurvivorInput
+  connect: SurvivalWhereUniqueInput
+}
+
+input SurvivalCreateskillsInput {
+  set: [String!]
+}
+
+input SurvivalCreateWithoutSurvivorInput {
+  value: Int
+  canSpend: Boolean
+  skills: SurvivalCreateskillsInput
+}
+
+"""An edge in a connection."""
+type SurvivalEdge {
+  """The item at the end of the edge."""
+  node: Survival!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum SurvivalOrderByInput {
+  id_ASC
+  id_DESC
+  value_ASC
+  value_DESC
+  canSpend_ASC
+  canSpend_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type SurvivalPreviousValues {
+  id: ID!
+  value: Int
+  skills: [String!]!
+  canSpend: Boolean
+}
+
+type SurvivalSubscriptionPayload {
+  mutation: MutationType!
+  node: Survival
+  updatedFields: [String!]
+  previousValues: SurvivalPreviousValues
+}
+
+input SurvivalSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SurvivalSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SurvivalSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SurvivalSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: SurvivalWhereInput
+}
+
+input SurvivalUpdateInput {
+  value: Int
+  canSpend: Boolean
+  skills: SurvivalUpdateskillsInput
+  survivor: SurvivorUpdateOneRequiredWithoutSurvivalInput
+}
+
+input SurvivalUpdateManyMutationInput {
+  value: Int
+  canSpend: Boolean
+  skills: SurvivalUpdateskillsInput
+}
+
+input SurvivalUpdateOneWithoutSurvivorInput {
+  create: SurvivalCreateWithoutSurvivorInput
+  connect: SurvivalWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: SurvivalUpdateWithoutSurvivorDataInput
+  upsert: SurvivalUpsertWithoutSurvivorInput
+}
+
+input SurvivalUpdateskillsInput {
+  set: [String!]
+}
+
+input SurvivalUpdateWithoutSurvivorDataInput {
+  value: Int
+  canSpend: Boolean
+  skills: SurvivalUpdateskillsInput
+}
+
+input SurvivalUpsertWithoutSurvivorInput {
+  update: SurvivalUpdateWithoutSurvivorDataInput!
+  create: SurvivalCreateWithoutSurvivorInput!
+}
+
+input SurvivalWhereInput {
+  """Logical AND on all given filters."""
+  AND: [SurvivalWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [SurvivalWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [SurvivalWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  value: Int
+
+  """All values that are not equal to given value."""
+  value_not: Int
+
+  """All values that are contained in given list."""
+  value_in: [Int!]
+
+  """All values that are not contained in given list."""
+  value_not_in: [Int!]
+
+  """All values less than the given value."""
+  value_lt: Int
+
+  """All values less than or equal the given value."""
+  value_lte: Int
+
+  """All values greater than the given value."""
+  value_gt: Int
+
+  """All values greater than or equal the given value."""
+  value_gte: Int
+  canSpend: Boolean
+
+  """All values that are not equal to given value."""
+  canSpend_not: Boolean
+  survivor: SurvivorWhereInput
+}
+
+input SurvivalWhereUniqueInput {
+  id: ID
 }
 
 type Survivor implements Node {
   id: ID!
-  campaign: Campaign!
   createdAt: DateTime!
   name: String!
-  gender: String!
+  gender: Gender!
+  campaign: Campaign!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  survival: Survival
+  movement: Movement
+  brain: Brain
+  hitLocations(where: HitLocationWhereInput, orderBy: HitLocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [HitLocation!]
+  weapon: Weapon
+  courage: Courage
+  understanding: Understanding
+  fightingArts(where: FightingArtWhereInput, orderBy: FightingArtOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FightingArt!]
+  disorders(where: DisorderWhereInput, orderBy: DisorderOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Disorder!]
+  features(where: FeatureWhereInput, orderBy: FeatureOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Feature!]
 }
 
 """A connection to a list of items."""
@@ -383,8 +2963,284 @@ type SurvivorConnection {
 
 input SurvivorCreateInput {
   name: String!
-  gender: String!
+  gender: Gender!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
   campaign: CampaignCreateOneInput!
+  survival: SurvivalCreateOneWithoutSurvivorInput
+  movement: MovementCreateOneWithoutSurvivorInput
+  brain: BrainCreateOneWithoutSurvivorInput
+  hitLocations: HitLocationCreateManyWithoutSurvivorInput
+  weapon: WeaponCreateOneWithoutSurvivorInput
+  courage: CourageCreateOneWithoutSurvivorInput
+  understanding: UnderstandingCreateOneWithoutSurvivorInput
+  fightingArts: FightingArtCreateManyWithoutSurvivorInput
+  disorders: DisorderCreateManyWithoutSurvivorInput
+  features: FeatureCreateManyWithoutSurvivorInput
+}
+
+input SurvivorCreateOneWithoutBrainInput {
+  create: SurvivorCreateWithoutBrainInput
+  connect: SurvivorWhereUniqueInput
+}
+
+input SurvivorCreateOneWithoutCourageInput {
+  create: SurvivorCreateWithoutCourageInput
+  connect: SurvivorWhereUniqueInput
+}
+
+input SurvivorCreateOneWithoutDisordersInput {
+  create: SurvivorCreateWithoutDisordersInput
+  connect: SurvivorWhereUniqueInput
+}
+
+input SurvivorCreateOneWithoutFeaturesInput {
+  create: SurvivorCreateWithoutFeaturesInput
+  connect: SurvivorWhereUniqueInput
+}
+
+input SurvivorCreateOneWithoutFightingArtsInput {
+  create: SurvivorCreateWithoutFightingArtsInput
+  connect: SurvivorWhereUniqueInput
+}
+
+input SurvivorCreateOneWithoutHitLocationsInput {
+  create: SurvivorCreateWithoutHitLocationsInput
+  connect: SurvivorWhereUniqueInput
+}
+
+input SurvivorCreateOneWithoutMovementInput {
+  create: SurvivorCreateWithoutMovementInput
+  connect: SurvivorWhereUniqueInput
+}
+
+input SurvivorCreateOneWithoutSurvivalInput {
+  create: SurvivorCreateWithoutSurvivalInput
+  connect: SurvivorWhereUniqueInput
+}
+
+input SurvivorCreateOneWithoutUnderstandingInput {
+  create: SurvivorCreateWithoutUnderstandingInput
+  connect: SurvivorWhereUniqueInput
+}
+
+input SurvivorCreateOneWithoutWeaponInput {
+  create: SurvivorCreateWithoutWeaponInput
+  connect: SurvivorWhereUniqueInput
+}
+
+input SurvivorCreateWithoutBrainInput {
+  name: String!
+  gender: Gender!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignCreateOneInput!
+  survival: SurvivalCreateOneWithoutSurvivorInput
+  movement: MovementCreateOneWithoutSurvivorInput
+  hitLocations: HitLocationCreateManyWithoutSurvivorInput
+  weapon: WeaponCreateOneWithoutSurvivorInput
+  courage: CourageCreateOneWithoutSurvivorInput
+  understanding: UnderstandingCreateOneWithoutSurvivorInput
+  fightingArts: FightingArtCreateManyWithoutSurvivorInput
+  disorders: DisorderCreateManyWithoutSurvivorInput
+  features: FeatureCreateManyWithoutSurvivorInput
+}
+
+input SurvivorCreateWithoutCourageInput {
+  name: String!
+  gender: Gender!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignCreateOneInput!
+  survival: SurvivalCreateOneWithoutSurvivorInput
+  movement: MovementCreateOneWithoutSurvivorInput
+  brain: BrainCreateOneWithoutSurvivorInput
+  hitLocations: HitLocationCreateManyWithoutSurvivorInput
+  weapon: WeaponCreateOneWithoutSurvivorInput
+  understanding: UnderstandingCreateOneWithoutSurvivorInput
+  fightingArts: FightingArtCreateManyWithoutSurvivorInput
+  disorders: DisorderCreateManyWithoutSurvivorInput
+  features: FeatureCreateManyWithoutSurvivorInput
+}
+
+input SurvivorCreateWithoutDisordersInput {
+  name: String!
+  gender: Gender!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignCreateOneInput!
+  survival: SurvivalCreateOneWithoutSurvivorInput
+  movement: MovementCreateOneWithoutSurvivorInput
+  brain: BrainCreateOneWithoutSurvivorInput
+  hitLocations: HitLocationCreateManyWithoutSurvivorInput
+  weapon: WeaponCreateOneWithoutSurvivorInput
+  courage: CourageCreateOneWithoutSurvivorInput
+  understanding: UnderstandingCreateOneWithoutSurvivorInput
+  fightingArts: FightingArtCreateManyWithoutSurvivorInput
+  features: FeatureCreateManyWithoutSurvivorInput
+}
+
+input SurvivorCreateWithoutFeaturesInput {
+  name: String!
+  gender: Gender!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignCreateOneInput!
+  survival: SurvivalCreateOneWithoutSurvivorInput
+  movement: MovementCreateOneWithoutSurvivorInput
+  brain: BrainCreateOneWithoutSurvivorInput
+  hitLocations: HitLocationCreateManyWithoutSurvivorInput
+  weapon: WeaponCreateOneWithoutSurvivorInput
+  courage: CourageCreateOneWithoutSurvivorInput
+  understanding: UnderstandingCreateOneWithoutSurvivorInput
+  fightingArts: FightingArtCreateManyWithoutSurvivorInput
+  disorders: DisorderCreateManyWithoutSurvivorInput
+}
+
+input SurvivorCreateWithoutFightingArtsInput {
+  name: String!
+  gender: Gender!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignCreateOneInput!
+  survival: SurvivalCreateOneWithoutSurvivorInput
+  movement: MovementCreateOneWithoutSurvivorInput
+  brain: BrainCreateOneWithoutSurvivorInput
+  hitLocations: HitLocationCreateManyWithoutSurvivorInput
+  weapon: WeaponCreateOneWithoutSurvivorInput
+  courage: CourageCreateOneWithoutSurvivorInput
+  understanding: UnderstandingCreateOneWithoutSurvivorInput
+  disorders: DisorderCreateManyWithoutSurvivorInput
+  features: FeatureCreateManyWithoutSurvivorInput
+}
+
+input SurvivorCreateWithoutHitLocationsInput {
+  name: String!
+  gender: Gender!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignCreateOneInput!
+  survival: SurvivalCreateOneWithoutSurvivorInput
+  movement: MovementCreateOneWithoutSurvivorInput
+  brain: BrainCreateOneWithoutSurvivorInput
+  weapon: WeaponCreateOneWithoutSurvivorInput
+  courage: CourageCreateOneWithoutSurvivorInput
+  understanding: UnderstandingCreateOneWithoutSurvivorInput
+  fightingArts: FightingArtCreateManyWithoutSurvivorInput
+  disorders: DisorderCreateManyWithoutSurvivorInput
+  features: FeatureCreateManyWithoutSurvivorInput
+}
+
+input SurvivorCreateWithoutMovementInput {
+  name: String!
+  gender: Gender!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignCreateOneInput!
+  survival: SurvivalCreateOneWithoutSurvivorInput
+  brain: BrainCreateOneWithoutSurvivorInput
+  hitLocations: HitLocationCreateManyWithoutSurvivorInput
+  weapon: WeaponCreateOneWithoutSurvivorInput
+  courage: CourageCreateOneWithoutSurvivorInput
+  understanding: UnderstandingCreateOneWithoutSurvivorInput
+  fightingArts: FightingArtCreateManyWithoutSurvivorInput
+  disorders: DisorderCreateManyWithoutSurvivorInput
+  features: FeatureCreateManyWithoutSurvivorInput
+}
+
+input SurvivorCreateWithoutSurvivalInput {
+  name: String!
+  gender: Gender!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignCreateOneInput!
+  movement: MovementCreateOneWithoutSurvivorInput
+  brain: BrainCreateOneWithoutSurvivorInput
+  hitLocations: HitLocationCreateManyWithoutSurvivorInput
+  weapon: WeaponCreateOneWithoutSurvivorInput
+  courage: CourageCreateOneWithoutSurvivorInput
+  understanding: UnderstandingCreateOneWithoutSurvivorInput
+  fightingArts: FightingArtCreateManyWithoutSurvivorInput
+  disorders: DisorderCreateManyWithoutSurvivorInput
+  features: FeatureCreateManyWithoutSurvivorInput
+}
+
+input SurvivorCreateWithoutUnderstandingInput {
+  name: String!
+  gender: Gender!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignCreateOneInput!
+  survival: SurvivalCreateOneWithoutSurvivorInput
+  movement: MovementCreateOneWithoutSurvivorInput
+  brain: BrainCreateOneWithoutSurvivorInput
+  hitLocations: HitLocationCreateManyWithoutSurvivorInput
+  weapon: WeaponCreateOneWithoutSurvivorInput
+  courage: CourageCreateOneWithoutSurvivorInput
+  fightingArts: FightingArtCreateManyWithoutSurvivorInput
+  disorders: DisorderCreateManyWithoutSurvivorInput
+  features: FeatureCreateManyWithoutSurvivorInput
+}
+
+input SurvivorCreateWithoutWeaponInput {
+  name: String!
+  gender: Gender!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignCreateOneInput!
+  survival: SurvivalCreateOneWithoutSurvivorInput
+  movement: MovementCreateOneWithoutSurvivorInput
+  brain: BrainCreateOneWithoutSurvivorInput
+  hitLocations: HitLocationCreateManyWithoutSurvivorInput
+  courage: CourageCreateOneWithoutSurvivorInput
+  understanding: UnderstandingCreateOneWithoutSurvivorInput
+  fightingArts: FightingArtCreateManyWithoutSurvivorInput
+  disorders: DisorderCreateManyWithoutSurvivorInput
+  features: FeatureCreateManyWithoutSurvivorInput
 }
 
 """An edge in a connection."""
@@ -405,6 +3261,18 @@ enum SurvivorOrderByInput {
   name_DESC
   gender_ASC
   gender_DESC
+  isActive_ASC
+  isActive_DESC
+  isDeceased_ASC
+  isDeceased_DESC
+  huntXP_ASC
+  huntXP_DESC
+  skipHunt_ASC
+  skipHunt_DESC
+  fightingArtsDisabled_ASC
+  fightingArtsDisabled_DESC
+  rerollUsed_ASC
+  rerollUsed_DESC
   updatedAt_ASC
   updatedAt_DESC
 }
@@ -413,7 +3281,13 @@ type SurvivorPreviousValues {
   id: ID!
   createdAt: DateTime!
   name: String!
-  gender: String!
+  gender: Gender!
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
 }
 
 type SurvivorSubscriptionPayload {
@@ -457,13 +3331,365 @@ input SurvivorSubscriptionWhereInput {
 
 input SurvivorUpdateInput {
   name: String
-  gender: String
+  gender: Gender
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
   campaign: CampaignUpdateOneRequiredInput
+  survival: SurvivalUpdateOneWithoutSurvivorInput
+  movement: MovementUpdateOneWithoutSurvivorInput
+  brain: BrainUpdateOneWithoutSurvivorInput
+  hitLocations: HitLocationUpdateManyWithoutSurvivorInput
+  weapon: WeaponUpdateOneWithoutSurvivorInput
+  courage: CourageUpdateOneWithoutSurvivorInput
+  understanding: UnderstandingUpdateOneWithoutSurvivorInput
+  fightingArts: FightingArtUpdateManyWithoutSurvivorInput
+  disorders: DisorderUpdateManyWithoutSurvivorInput
+  features: FeatureUpdateManyWithoutSurvivorInput
 }
 
-input SurvivorUpdateManyInput {
+input SurvivorUpdateManyMutationInput {
   name: String
-  gender: String
+  gender: Gender
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+}
+
+input SurvivorUpdateOneRequiredWithoutBrainInput {
+  create: SurvivorCreateWithoutBrainInput
+  connect: SurvivorWhereUniqueInput
+  update: SurvivorUpdateWithoutBrainDataInput
+  upsert: SurvivorUpsertWithoutBrainInput
+}
+
+input SurvivorUpdateOneRequiredWithoutCourageInput {
+  create: SurvivorCreateWithoutCourageInput
+  connect: SurvivorWhereUniqueInput
+  update: SurvivorUpdateWithoutCourageDataInput
+  upsert: SurvivorUpsertWithoutCourageInput
+}
+
+input SurvivorUpdateOneRequiredWithoutDisordersInput {
+  create: SurvivorCreateWithoutDisordersInput
+  connect: SurvivorWhereUniqueInput
+  update: SurvivorUpdateWithoutDisordersDataInput
+  upsert: SurvivorUpsertWithoutDisordersInput
+}
+
+input SurvivorUpdateOneRequiredWithoutFeaturesInput {
+  create: SurvivorCreateWithoutFeaturesInput
+  connect: SurvivorWhereUniqueInput
+  update: SurvivorUpdateWithoutFeaturesDataInput
+  upsert: SurvivorUpsertWithoutFeaturesInput
+}
+
+input SurvivorUpdateOneRequiredWithoutFightingArtsInput {
+  create: SurvivorCreateWithoutFightingArtsInput
+  connect: SurvivorWhereUniqueInput
+  update: SurvivorUpdateWithoutFightingArtsDataInput
+  upsert: SurvivorUpsertWithoutFightingArtsInput
+}
+
+input SurvivorUpdateOneRequiredWithoutHitLocationsInput {
+  create: SurvivorCreateWithoutHitLocationsInput
+  connect: SurvivorWhereUniqueInput
+  update: SurvivorUpdateWithoutHitLocationsDataInput
+  upsert: SurvivorUpsertWithoutHitLocationsInput
+}
+
+input SurvivorUpdateOneRequiredWithoutMovementInput {
+  create: SurvivorCreateWithoutMovementInput
+  connect: SurvivorWhereUniqueInput
+  update: SurvivorUpdateWithoutMovementDataInput
+  upsert: SurvivorUpsertWithoutMovementInput
+}
+
+input SurvivorUpdateOneRequiredWithoutSurvivalInput {
+  create: SurvivorCreateWithoutSurvivalInput
+  connect: SurvivorWhereUniqueInput
+  update: SurvivorUpdateWithoutSurvivalDataInput
+  upsert: SurvivorUpsertWithoutSurvivalInput
+}
+
+input SurvivorUpdateOneRequiredWithoutUnderstandingInput {
+  create: SurvivorCreateWithoutUnderstandingInput
+  connect: SurvivorWhereUniqueInput
+  update: SurvivorUpdateWithoutUnderstandingDataInput
+  upsert: SurvivorUpsertWithoutUnderstandingInput
+}
+
+input SurvivorUpdateOneRequiredWithoutWeaponInput {
+  create: SurvivorCreateWithoutWeaponInput
+  connect: SurvivorWhereUniqueInput
+  update: SurvivorUpdateWithoutWeaponDataInput
+  upsert: SurvivorUpsertWithoutWeaponInput
+}
+
+input SurvivorUpdateWithoutBrainDataInput {
+  name: String
+  gender: Gender
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignUpdateOneRequiredInput
+  survival: SurvivalUpdateOneWithoutSurvivorInput
+  movement: MovementUpdateOneWithoutSurvivorInput
+  hitLocations: HitLocationUpdateManyWithoutSurvivorInput
+  weapon: WeaponUpdateOneWithoutSurvivorInput
+  courage: CourageUpdateOneWithoutSurvivorInput
+  understanding: UnderstandingUpdateOneWithoutSurvivorInput
+  fightingArts: FightingArtUpdateManyWithoutSurvivorInput
+  disorders: DisorderUpdateManyWithoutSurvivorInput
+  features: FeatureUpdateManyWithoutSurvivorInput
+}
+
+input SurvivorUpdateWithoutCourageDataInput {
+  name: String
+  gender: Gender
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignUpdateOneRequiredInput
+  survival: SurvivalUpdateOneWithoutSurvivorInput
+  movement: MovementUpdateOneWithoutSurvivorInput
+  brain: BrainUpdateOneWithoutSurvivorInput
+  hitLocations: HitLocationUpdateManyWithoutSurvivorInput
+  weapon: WeaponUpdateOneWithoutSurvivorInput
+  understanding: UnderstandingUpdateOneWithoutSurvivorInput
+  fightingArts: FightingArtUpdateManyWithoutSurvivorInput
+  disorders: DisorderUpdateManyWithoutSurvivorInput
+  features: FeatureUpdateManyWithoutSurvivorInput
+}
+
+input SurvivorUpdateWithoutDisordersDataInput {
+  name: String
+  gender: Gender
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignUpdateOneRequiredInput
+  survival: SurvivalUpdateOneWithoutSurvivorInput
+  movement: MovementUpdateOneWithoutSurvivorInput
+  brain: BrainUpdateOneWithoutSurvivorInput
+  hitLocations: HitLocationUpdateManyWithoutSurvivorInput
+  weapon: WeaponUpdateOneWithoutSurvivorInput
+  courage: CourageUpdateOneWithoutSurvivorInput
+  understanding: UnderstandingUpdateOneWithoutSurvivorInput
+  fightingArts: FightingArtUpdateManyWithoutSurvivorInput
+  features: FeatureUpdateManyWithoutSurvivorInput
+}
+
+input SurvivorUpdateWithoutFeaturesDataInput {
+  name: String
+  gender: Gender
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignUpdateOneRequiredInput
+  survival: SurvivalUpdateOneWithoutSurvivorInput
+  movement: MovementUpdateOneWithoutSurvivorInput
+  brain: BrainUpdateOneWithoutSurvivorInput
+  hitLocations: HitLocationUpdateManyWithoutSurvivorInput
+  weapon: WeaponUpdateOneWithoutSurvivorInput
+  courage: CourageUpdateOneWithoutSurvivorInput
+  understanding: UnderstandingUpdateOneWithoutSurvivorInput
+  fightingArts: FightingArtUpdateManyWithoutSurvivorInput
+  disorders: DisorderUpdateManyWithoutSurvivorInput
+}
+
+input SurvivorUpdateWithoutFightingArtsDataInput {
+  name: String
+  gender: Gender
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignUpdateOneRequiredInput
+  survival: SurvivalUpdateOneWithoutSurvivorInput
+  movement: MovementUpdateOneWithoutSurvivorInput
+  brain: BrainUpdateOneWithoutSurvivorInput
+  hitLocations: HitLocationUpdateManyWithoutSurvivorInput
+  weapon: WeaponUpdateOneWithoutSurvivorInput
+  courage: CourageUpdateOneWithoutSurvivorInput
+  understanding: UnderstandingUpdateOneWithoutSurvivorInput
+  disorders: DisorderUpdateManyWithoutSurvivorInput
+  features: FeatureUpdateManyWithoutSurvivorInput
+}
+
+input SurvivorUpdateWithoutHitLocationsDataInput {
+  name: String
+  gender: Gender
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignUpdateOneRequiredInput
+  survival: SurvivalUpdateOneWithoutSurvivorInput
+  movement: MovementUpdateOneWithoutSurvivorInput
+  brain: BrainUpdateOneWithoutSurvivorInput
+  weapon: WeaponUpdateOneWithoutSurvivorInput
+  courage: CourageUpdateOneWithoutSurvivorInput
+  understanding: UnderstandingUpdateOneWithoutSurvivorInput
+  fightingArts: FightingArtUpdateManyWithoutSurvivorInput
+  disorders: DisorderUpdateManyWithoutSurvivorInput
+  features: FeatureUpdateManyWithoutSurvivorInput
+}
+
+input SurvivorUpdateWithoutMovementDataInput {
+  name: String
+  gender: Gender
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignUpdateOneRequiredInput
+  survival: SurvivalUpdateOneWithoutSurvivorInput
+  brain: BrainUpdateOneWithoutSurvivorInput
+  hitLocations: HitLocationUpdateManyWithoutSurvivorInput
+  weapon: WeaponUpdateOneWithoutSurvivorInput
+  courage: CourageUpdateOneWithoutSurvivorInput
+  understanding: UnderstandingUpdateOneWithoutSurvivorInput
+  fightingArts: FightingArtUpdateManyWithoutSurvivorInput
+  disorders: DisorderUpdateManyWithoutSurvivorInput
+  features: FeatureUpdateManyWithoutSurvivorInput
+}
+
+input SurvivorUpdateWithoutSurvivalDataInput {
+  name: String
+  gender: Gender
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignUpdateOneRequiredInput
+  movement: MovementUpdateOneWithoutSurvivorInput
+  brain: BrainUpdateOneWithoutSurvivorInput
+  hitLocations: HitLocationUpdateManyWithoutSurvivorInput
+  weapon: WeaponUpdateOneWithoutSurvivorInput
+  courage: CourageUpdateOneWithoutSurvivorInput
+  understanding: UnderstandingUpdateOneWithoutSurvivorInput
+  fightingArts: FightingArtUpdateManyWithoutSurvivorInput
+  disorders: DisorderUpdateManyWithoutSurvivorInput
+  features: FeatureUpdateManyWithoutSurvivorInput
+}
+
+input SurvivorUpdateWithoutUnderstandingDataInput {
+  name: String
+  gender: Gender
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignUpdateOneRequiredInput
+  survival: SurvivalUpdateOneWithoutSurvivorInput
+  movement: MovementUpdateOneWithoutSurvivorInput
+  brain: BrainUpdateOneWithoutSurvivorInput
+  hitLocations: HitLocationUpdateManyWithoutSurvivorInput
+  weapon: WeaponUpdateOneWithoutSurvivorInput
+  courage: CourageUpdateOneWithoutSurvivorInput
+  fightingArts: FightingArtUpdateManyWithoutSurvivorInput
+  disorders: DisorderUpdateManyWithoutSurvivorInput
+  features: FeatureUpdateManyWithoutSurvivorInput
+}
+
+input SurvivorUpdateWithoutWeaponDataInput {
+  name: String
+  gender: Gender
+  isActive: Boolean
+  isDeceased: Boolean
+  huntXP: Int
+  skipHunt: Boolean
+  fightingArtsDisabled: Boolean
+  rerollUsed: Boolean
+  campaign: CampaignUpdateOneRequiredInput
+  survival: SurvivalUpdateOneWithoutSurvivorInput
+  movement: MovementUpdateOneWithoutSurvivorInput
+  brain: BrainUpdateOneWithoutSurvivorInput
+  hitLocations: HitLocationUpdateManyWithoutSurvivorInput
+  courage: CourageUpdateOneWithoutSurvivorInput
+  understanding: UnderstandingUpdateOneWithoutSurvivorInput
+  fightingArts: FightingArtUpdateManyWithoutSurvivorInput
+  disorders: DisorderUpdateManyWithoutSurvivorInput
+  features: FeatureUpdateManyWithoutSurvivorInput
+}
+
+input SurvivorUpsertWithoutBrainInput {
+  update: SurvivorUpdateWithoutBrainDataInput!
+  create: SurvivorCreateWithoutBrainInput!
+}
+
+input SurvivorUpsertWithoutCourageInput {
+  update: SurvivorUpdateWithoutCourageDataInput!
+  create: SurvivorCreateWithoutCourageInput!
+}
+
+input SurvivorUpsertWithoutDisordersInput {
+  update: SurvivorUpdateWithoutDisordersDataInput!
+  create: SurvivorCreateWithoutDisordersInput!
+}
+
+input SurvivorUpsertWithoutFeaturesInput {
+  update: SurvivorUpdateWithoutFeaturesDataInput!
+  create: SurvivorCreateWithoutFeaturesInput!
+}
+
+input SurvivorUpsertWithoutFightingArtsInput {
+  update: SurvivorUpdateWithoutFightingArtsDataInput!
+  create: SurvivorCreateWithoutFightingArtsInput!
+}
+
+input SurvivorUpsertWithoutHitLocationsInput {
+  update: SurvivorUpdateWithoutHitLocationsDataInput!
+  create: SurvivorCreateWithoutHitLocationsInput!
+}
+
+input SurvivorUpsertWithoutMovementInput {
+  update: SurvivorUpdateWithoutMovementDataInput!
+  create: SurvivorCreateWithoutMovementInput!
+}
+
+input SurvivorUpsertWithoutSurvivalInput {
+  update: SurvivorUpdateWithoutSurvivalDataInput!
+  create: SurvivorCreateWithoutSurvivalInput!
+}
+
+input SurvivorUpsertWithoutUnderstandingInput {
+  update: SurvivorUpdateWithoutUnderstandingDataInput!
+  create: SurvivorCreateWithoutUnderstandingInput!
+}
+
+input SurvivorUpsertWithoutWeaponInput {
+  update: SurvivorUpdateWithoutWeaponDataInput!
+  create: SurvivorCreateWithoutWeaponInput!
 }
 
 input SurvivorWhereInput {
@@ -577,50 +3803,318 @@ input SurvivorWhereInput {
 
   """All values not ending with the given string."""
   name_not_ends_with: String
-  gender: String
+  gender: Gender
 
   """All values that are not equal to given value."""
-  gender_not: String
+  gender_not: Gender
 
   """All values that are contained in given list."""
-  gender_in: [String!]
+  gender_in: [Gender!]
 
   """All values that are not contained in given list."""
-  gender_not_in: [String!]
+  gender_not_in: [Gender!]
+  isActive: Boolean
+
+  """All values that are not equal to given value."""
+  isActive_not: Boolean
+  isDeceased: Boolean
+
+  """All values that are not equal to given value."""
+  isDeceased_not: Boolean
+  huntXP: Int
+
+  """All values that are not equal to given value."""
+  huntXP_not: Int
+
+  """All values that are contained in given list."""
+  huntXP_in: [Int!]
+
+  """All values that are not contained in given list."""
+  huntXP_not_in: [Int!]
 
   """All values less than the given value."""
-  gender_lt: String
+  huntXP_lt: Int
 
   """All values less than or equal the given value."""
-  gender_lte: String
+  huntXP_lte: Int
 
   """All values greater than the given value."""
-  gender_gt: String
+  huntXP_gt: Int
 
   """All values greater than or equal the given value."""
-  gender_gte: String
+  huntXP_gte: Int
+  skipHunt: Boolean
 
-  """All values containing the given string."""
-  gender_contains: String
+  """All values that are not equal to given value."""
+  skipHunt_not: Boolean
+  fightingArtsDisabled: Boolean
 
-  """All values not containing the given string."""
-  gender_not_contains: String
+  """All values that are not equal to given value."""
+  fightingArtsDisabled_not: Boolean
+  rerollUsed: Boolean
 
-  """All values starting with the given string."""
-  gender_starts_with: String
-
-  """All values not starting with the given string."""
-  gender_not_starts_with: String
-
-  """All values ending with the given string."""
-  gender_ends_with: String
-
-  """All values not ending with the given string."""
-  gender_not_ends_with: String
+  """All values that are not equal to given value."""
+  rerollUsed_not: Boolean
   campaign: CampaignWhereInput
+  survival: SurvivalWhereInput
+  movement: MovementWhereInput
+  brain: BrainWhereInput
+  hitLocations_every: HitLocationWhereInput
+  hitLocations_some: HitLocationWhereInput
+  hitLocations_none: HitLocationWhereInput
+  weapon: WeaponWhereInput
+  courage: CourageWhereInput
+  understanding: UnderstandingWhereInput
+  fightingArts_every: FightingArtWhereInput
+  fightingArts_some: FightingArtWhereInput
+  fightingArts_none: FightingArtWhereInput
+  disorders_every: DisorderWhereInput
+  disorders_some: DisorderWhereInput
+  disorders_none: DisorderWhereInput
+  features_every: FeatureWhereInput
+  features_some: FeatureWhereInput
+  features_none: FeatureWhereInput
 }
 
 input SurvivorWhereUniqueInput {
+  id: ID
+}
+
+type Understanding implements Node {
+  id: ID!
+  survivor: Survivor!
+  level: Int
+  analyze: Boolean
+  explore: Boolean
+  tinker: Boolean
+}
+
+"""A connection to a list of items."""
+type UnderstandingConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UnderstandingEdge]!
+  aggregate: AggregateUnderstanding!
+}
+
+input UnderstandingCreateInput {
+  level: Int
+  analyze: Boolean
+  explore: Boolean
+  tinker: Boolean
+  survivor: SurvivorCreateOneWithoutUnderstandingInput!
+}
+
+input UnderstandingCreateOneWithoutSurvivorInput {
+  create: UnderstandingCreateWithoutSurvivorInput
+  connect: UnderstandingWhereUniqueInput
+}
+
+input UnderstandingCreateWithoutSurvivorInput {
+  level: Int
+  analyze: Boolean
+  explore: Boolean
+  tinker: Boolean
+}
+
+"""An edge in a connection."""
+type UnderstandingEdge {
+  """The item at the end of the edge."""
+  node: Understanding!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UnderstandingOrderByInput {
+  id_ASC
+  id_DESC
+  level_ASC
+  level_DESC
+  analyze_ASC
+  analyze_DESC
+  explore_ASC
+  explore_DESC
+  tinker_ASC
+  tinker_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type UnderstandingPreviousValues {
+  id: ID!
+  level: Int
+  analyze: Boolean
+  explore: Boolean
+  tinker: Boolean
+}
+
+type UnderstandingSubscriptionPayload {
+  mutation: MutationType!
+  node: Understanding
+  updatedFields: [String!]
+  previousValues: UnderstandingPreviousValues
+}
+
+input UnderstandingSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UnderstandingSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UnderstandingSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UnderstandingSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UnderstandingWhereInput
+}
+
+input UnderstandingUpdateInput {
+  level: Int
+  analyze: Boolean
+  explore: Boolean
+  tinker: Boolean
+  survivor: SurvivorUpdateOneRequiredWithoutUnderstandingInput
+}
+
+input UnderstandingUpdateManyMutationInput {
+  level: Int
+  analyze: Boolean
+  explore: Boolean
+  tinker: Boolean
+}
+
+input UnderstandingUpdateOneWithoutSurvivorInput {
+  create: UnderstandingCreateWithoutSurvivorInput
+  connect: UnderstandingWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UnderstandingUpdateWithoutSurvivorDataInput
+  upsert: UnderstandingUpsertWithoutSurvivorInput
+}
+
+input UnderstandingUpdateWithoutSurvivorDataInput {
+  level: Int
+  analyze: Boolean
+  explore: Boolean
+  tinker: Boolean
+}
+
+input UnderstandingUpsertWithoutSurvivorInput {
+  update: UnderstandingUpdateWithoutSurvivorDataInput!
+  create: UnderstandingCreateWithoutSurvivorInput!
+}
+
+input UnderstandingWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UnderstandingWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UnderstandingWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UnderstandingWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  level: Int
+
+  """All values that are not equal to given value."""
+  level_not: Int
+
+  """All values that are contained in given list."""
+  level_in: [Int!]
+
+  """All values that are not contained in given list."""
+  level_not_in: [Int!]
+
+  """All values less than the given value."""
+  level_lt: Int
+
+  """All values less than or equal the given value."""
+  level_lte: Int
+
+  """All values greater than the given value."""
+  level_gt: Int
+
+  """All values greater than or equal the given value."""
+  level_gte: Int
+  analyze: Boolean
+
+  """All values that are not equal to given value."""
+  analyze_not: Boolean
+  explore: Boolean
+
+  """All values that are not equal to given value."""
+  explore_not: Boolean
+  tinker: Boolean
+
+  """All values that are not equal to given value."""
+  tinker_not: Boolean
+  survivor: SurvivorWhereInput
+}
+
+input UnderstandingWhereUniqueInput {
   id: ID
 }
 
@@ -629,7 +4123,7 @@ type User implements Node {
   name: String!
   username: String!
   password: String!
-  campaign: Campaign
+  campaigns(where: CampaignWhereInput, orderBy: CampaignOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Campaign!]
 }
 
 """A connection to a list of items."""
@@ -646,15 +4140,15 @@ input UserCreateInput {
   name: String!
   username: String!
   password: String!
-  campaign: CampaignCreateOneWithoutUsersInput
+  campaigns: CampaignCreateManyWithoutUsersInput
 }
 
-input UserCreateManyWithoutCampaignInput {
-  create: [UserCreateWithoutCampaignInput!]
+input UserCreateManyWithoutCampaignsInput {
+  create: [UserCreateWithoutCampaignsInput!]
   connect: [UserWhereUniqueInput!]
 }
 
-input UserCreateWithoutCampaignInput {
+input UserCreateWithoutCampaignsInput {
   name: String!
   username: String!
   password: String!
@@ -734,39 +4228,39 @@ input UserUpdateInput {
   name: String
   username: String
   password: String
-  campaign: CampaignUpdateOneWithoutUsersInput
+  campaigns: CampaignUpdateManyWithoutUsersInput
 }
 
-input UserUpdateManyInput {
+input UserUpdateManyMutationInput {
   name: String
   username: String
   password: String
 }
 
-input UserUpdateManyWithoutCampaignInput {
-  create: [UserCreateWithoutCampaignInput!]
+input UserUpdateManyWithoutCampaignsInput {
+  create: [UserCreateWithoutCampaignsInput!]
   connect: [UserWhereUniqueInput!]
   disconnect: [UserWhereUniqueInput!]
   delete: [UserWhereUniqueInput!]
-  update: [UserUpdateWithWhereUniqueWithoutCampaignInput!]
-  upsert: [UserUpsertWithWhereUniqueWithoutCampaignInput!]
+  update: [UserUpdateWithWhereUniqueWithoutCampaignsInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutCampaignsInput!]
 }
 
-input UserUpdateWithoutCampaignDataInput {
+input UserUpdateWithoutCampaignsDataInput {
   name: String
   username: String
   password: String
 }
 
-input UserUpdateWithWhereUniqueWithoutCampaignInput {
+input UserUpdateWithWhereUniqueWithoutCampaignsInput {
   where: UserWhereUniqueInput!
-  data: UserUpdateWithoutCampaignDataInput!
+  data: UserUpdateWithoutCampaignsDataInput!
 }
 
-input UserUpsertWithWhereUniqueWithoutCampaignInput {
+input UserUpsertWithWhereUniqueWithoutCampaignsInput {
   where: UserWhereUniqueInput!
-  update: UserUpdateWithoutCampaignDataInput!
-  create: UserCreateWithoutCampaignInput!
+  update: UserUpdateWithoutCampaignsDataInput!
+  create: UserCreateWithoutCampaignsInput!
 }
 
 input UserWhereInput {
@@ -938,10 +4432,260 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
-  campaign: CampaignWhereInput
+  campaigns_every: CampaignWhereInput
+  campaigns_some: CampaignWhereInput
+  campaigns_none: CampaignWhereInput
 }
 
 input UserWhereUniqueInput {
   id: ID
   username: String
+}
+
+type Weapon implements Node {
+  id: ID!
+  survivor: Survivor!
+  type: String
+  proficiency: Int
+}
+
+"""A connection to a list of items."""
+type WeaponConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [WeaponEdge]!
+  aggregate: AggregateWeapon!
+}
+
+input WeaponCreateInput {
+  type: String
+  proficiency: Int
+  survivor: SurvivorCreateOneWithoutWeaponInput!
+}
+
+input WeaponCreateOneWithoutSurvivorInput {
+  create: WeaponCreateWithoutSurvivorInput
+  connect: WeaponWhereUniqueInput
+}
+
+input WeaponCreateWithoutSurvivorInput {
+  type: String
+  proficiency: Int
+}
+
+"""An edge in a connection."""
+type WeaponEdge {
+  """The item at the end of the edge."""
+  node: Weapon!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum WeaponOrderByInput {
+  id_ASC
+  id_DESC
+  type_ASC
+  type_DESC
+  proficiency_ASC
+  proficiency_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type WeaponPreviousValues {
+  id: ID!
+  type: String
+  proficiency: Int
+}
+
+type WeaponSubscriptionPayload {
+  mutation: MutationType!
+  node: Weapon
+  updatedFields: [String!]
+  previousValues: WeaponPreviousValues
+}
+
+input WeaponSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [WeaponSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [WeaponSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [WeaponSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: WeaponWhereInput
+}
+
+input WeaponUpdateInput {
+  type: String
+  proficiency: Int
+  survivor: SurvivorUpdateOneRequiredWithoutWeaponInput
+}
+
+input WeaponUpdateManyMutationInput {
+  type: String
+  proficiency: Int
+}
+
+input WeaponUpdateOneWithoutSurvivorInput {
+  create: WeaponCreateWithoutSurvivorInput
+  connect: WeaponWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: WeaponUpdateWithoutSurvivorDataInput
+  upsert: WeaponUpsertWithoutSurvivorInput
+}
+
+input WeaponUpdateWithoutSurvivorDataInput {
+  type: String
+  proficiency: Int
+}
+
+input WeaponUpsertWithoutSurvivorInput {
+  update: WeaponUpdateWithoutSurvivorDataInput!
+  create: WeaponCreateWithoutSurvivorInput!
+}
+
+input WeaponWhereInput {
+  """Logical AND on all given filters."""
+  AND: [WeaponWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [WeaponWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [WeaponWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  type: String
+
+  """All values that are not equal to given value."""
+  type_not: String
+
+  """All values that are contained in given list."""
+  type_in: [String!]
+
+  """All values that are not contained in given list."""
+  type_not_in: [String!]
+
+  """All values less than the given value."""
+  type_lt: String
+
+  """All values less than or equal the given value."""
+  type_lte: String
+
+  """All values greater than the given value."""
+  type_gt: String
+
+  """All values greater than or equal the given value."""
+  type_gte: String
+
+  """All values containing the given string."""
+  type_contains: String
+
+  """All values not containing the given string."""
+  type_not_contains: String
+
+  """All values starting with the given string."""
+  type_starts_with: String
+
+  """All values not starting with the given string."""
+  type_not_starts_with: String
+
+  """All values ending with the given string."""
+  type_ends_with: String
+
+  """All values not ending with the given string."""
+  type_not_ends_with: String
+  proficiency: Int
+
+  """All values that are not equal to given value."""
+  proficiency_not: Int
+
+  """All values that are contained in given list."""
+  proficiency_in: [Int!]
+
+  """All values that are not contained in given list."""
+  proficiency_not_in: [Int!]
+
+  """All values less than the given value."""
+  proficiency_lt: Int
+
+  """All values less than or equal the given value."""
+  proficiency_lte: Int
+
+  """All values greater than the given value."""
+  proficiency_gt: Int
+
+  """All values greater than or equal the given value."""
+  proficiency_gte: Int
+  survivor: SurvivorWhereInput
+}
+
+input WeaponWhereUniqueInput {
+  id: ID
 }

@@ -1,6 +1,9 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { APP_SECRET, getUserId } = require('../utils');
+const {
+  createNewSurvivor
+} = require('./survivor/index');
 
 async function signup(parent, args, context, info) {
   const password = await bcrypt.hash(args.password, 10);
@@ -37,35 +40,17 @@ async function login(parent, args, context, info) {
 
 function campaign(root, args, context, info) {
   const userId = getUserId(context);
-  console.log(userId);
   return context.db.mutation.createCampaign({
     data: {
       name: args.name,
       users: { connect: [{ id: userId }] },
     },
   });
-  // context.db.query.users({ where: { id: userId }}, info).then((data) => {
-  //   return context.db.mutation.createCampaign({
-  //     data: {
-  //       name: args.name,
-  //       users: data,
-  //     },
-  //   });
-  // });
-}
-
-function survivor(root, args, context, info) {
-  return context.db.mutation.createSurvivor({
-    data: {
-      name: args.name || 'Survivor',
-      gender: args.gender,
-    },
-  }, info);
 }
 
 module.exports = {
   campaign,
+  createNewSurvivor,
   login,
   signup,
-  survivor,
 }

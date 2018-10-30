@@ -1,4 +1,4 @@
-function survivors() {
+function survivors(root, args, context, info) {
   return context.db.query.survivors({}, info);
 }
 

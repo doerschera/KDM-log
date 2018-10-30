@@ -3,6 +3,7 @@ type Campaign {
   name: String!
   createdAt: DateTime!
   users: [User!]!
+  settlements: [Settlement!]!
 }
 
 type User {
@@ -10,13 +11,120 @@ type User {
   name: String!
   username: String! @unique
   password: String!
-  campaigns: [Campaign]!
+  campaigns: [Campaign!]!
+}
+
+type Settlement {
+  id: ID! @unique
+  name: String!
+  population: Int
 }
 
 type Survivor {
   id: ID! @unique
-  campaign: Campaign!
   createdAt: DateTime!
-  name: String!
-  gender: String!
+  name: String! @defualt(value: "Survivor")
+  gender: Gender! @defualt(value: MALE)
+  campaign: Campaign!
+  isActive: Boolean @defualt(value: false)
+  isDeceased: Boolean @defualt(value: false)
+  huntXP: Int
+  skipHunt: Boolean @defualt(value: false)
+  fightingArtsDisabled: Boolean @defualt(value: false)
+  rerollUsed: Boolean @defualt(value: false)
+  survival: Survival
+  movement: Movement
+  brain: Brain
+  hitLocations: [HitLocation!]!
+  weapon: Weapon
+  courage: Courage
+  understanding: Understanding
+  fightingArts: [FightingArt!]!
+  disorders: [Disorder!]!
+  features: [Feature!]!
+}
+
+type Survival {
+  id: ID! @unique
+  survivor: Survivor!
+  value: Int @defualt(value: 1)
+  skills: [String!]! @defualt(value: ["dodge"])
+  canSpend: Boolean @defualt(value: true)
+}
+
+type Movement {
+  id: ID! @unique
+  survivor: Survivor! @unique
+  value: Int @defualt(value: 5)
+  accuracy: Int
+  strength: Int
+  evasion: Int
+  luck: Int
+  speed: Int 
+}
+
+type Brain {
+  id: ID! @unique
+  survivor: Survivor! @unique
+  value: Int
+  injured: Boolean
+}
+
+type HitLocation {
+  id: ID! @unique
+  survivor: Survivor!
+  type: String!
+  armor: Int
+  damage: Int
+}
+
+type Weapon {
+  id: ID! @unique
+  survivor: Survivor! @unique
+  type: String
+  proficiency: Int
+}
+
+type Courage {
+  id: ID! @unique
+  survivor: Survivor! @unique
+  level: Int
+  stalwart: Boolean @defualt(value: false)
+  prepared: Boolean @defualt(value: false)
+  matchmaker: Boolean @defualt(value: false)
+}
+
+type Understanding {
+  id: ID! @unique
+  survivor: Survivor! @unique
+  level: Int
+  analyze: Boolean @defualt(value: false)
+  explore: Boolean @defualt(value: false)
+  tinker: Boolean @defualt(value: false)
+}
+
+type FightingArt {
+  id: ID! @unique
+  survivor: Survivor!
+  name: String
+  note: String
+}
+
+type Disorder {
+  id: ID! @unique
+  survivor: Survivor!
+  name: String
+  note: String
+}
+
+type Feature {
+  id: ID! @unique
+  survivor: Survivor!
+  name: String
+  note: String
+  lifetime: Boolean @defualt(value: false)
+}
+
+enum Gender {
+  MALE, FEMALE
 }

@@ -2,7 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { APP_SECRET, getUserId } = require('../utils');
 const {
-  createNewSurvivor
+  createNewSurvivor,
+  markAsActive,
 } = require('./survivor/index');
 
 async function signup(parent, args, context, info) {
@@ -52,5 +53,6 @@ module.exports = {
   campaign,
   createNewSurvivor,
   login,
+  markAsActive,
   signup,
 }

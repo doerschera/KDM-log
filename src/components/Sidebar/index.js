@@ -30,7 +30,7 @@ export default class Sidebar extends PureComponent {
       <div className={classNames('sidebar', { expanded })}>
         <img src={lantern} alt="lantern" onClick={this.onSidebarToggle} />
         <div className="content">
-          <div className="header context">Hunt</div>
+          <div className="header context">{context}</div>
           <div className="options">
             {options.map((option, i) => (
               <div className="option" onClick={option.onClick} id={i}>
@@ -38,7 +38,7 @@ export default class Sidebar extends PureComponent {
               </div>
             ))}
           </div>
-          <div className="header">Settlement</div>
+          <div className="header">{navigationText}</div>
         </div>
       </div>
     )

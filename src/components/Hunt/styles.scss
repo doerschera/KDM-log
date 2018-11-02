@@ -1,8 +1,9 @@
 @import '../../mixins.scss';
 
 .hunt {
-  background-color: $black;
   color: $grey-4;
-  height: 100vh;
+  height: 100%;
+  max-height: 100vh;
+  overflow: auto;
   width: 100%;
 }

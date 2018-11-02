@@ -1,0 +1,48 @@
+@import '../../mixins.scss';
+
+.survivor-summary {
+  @include font-monospace;
+  border: solid 1px $grey-2;
+  color: $grey-2;
+  margin: 20px auto;
+  width: 400px;
+
+  .status {
+    background-color: $grey-2;
+    color: $black;
+    font-size: 12px;
+    padding: 2px;
+  }
+
+  &.active {
+    border-color: $white;
+    color: $white;
+
+    .status {
+      background-color: $white;
+      color: $grey-2;
+    }
+  }
+
+  .info-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+  }
+
+  .name {
+    width: 100px;
+  }
+
+  .health {
+    font-size: 12px;
+    width: 100px;
+  }
+
+  .button {
+    border: solid 1px $grey-2;
+    font-size: 12px;
+    float: right;
+    padding: 5px;
+  }
+}

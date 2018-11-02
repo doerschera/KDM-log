@@ -1,0 +1,15 @@
+@import './mixins.scss';
+
+body {
+  @include font-text;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page-title {
+  @include font-monospace;
+  font-size: 18px;
+}
+

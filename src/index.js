@@ -7,7 +7,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
-import './styles/index.scss';
+import 'normalize.css';
+import './index.scss';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000'

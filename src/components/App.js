@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import SurvivorList from './SurvivorList';
-import '../styles/App.scss';
+import Hunt from './Hunt';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <SurvivorList />
+        <Hunt />
       </div>
     );
   }

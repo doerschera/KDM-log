@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Cutive+Mono|Quicksand');
+
+$black: #000000;
+$grey-1: #28323B;
+$grey-2: #6F7D89;
+$grey-3: #B7C4CE;
+$grey-4: #E6EBF0;
+$white: #FFFFFF;
+
+@mixin font-monospace {
+  font-family: 'Curtive Mono', 'Courier New', monospace;
+}
+
+@mixin font-text {
+  font-family: 'Quicksand', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}

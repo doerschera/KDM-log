@@ -15,6 +15,12 @@ body {
 
 .page-title {
   @include font-monospace;
-  font-size: 18px;
+  color: $grey-1;
+  font-size: 60px;
+
+  &::before {
+    content: 'XXX';
+    margin-right: 5px;
+  }
 }
 

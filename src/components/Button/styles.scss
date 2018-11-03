@@ -1,0 +1,24 @@
+@import '../../mixins.scss';
+
+.button {
+  border: solid 1px $grey-2;
+  font-size: 12px;
+  float: right;
+  padding: 5px;
+
+  &:hover {
+    border-color: $grey-3;
+    color: $grey-3;
+    cursor: pointer;
+  }
+
+  &.disabled {
+    border-color: $grey-1;
+    color: $grey-1;
+    text-decoration-line: line-through;
+
+    &:hover {
+      cursor: default;
+    }
+  }
+}

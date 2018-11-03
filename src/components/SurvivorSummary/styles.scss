@@ -22,12 +22,17 @@
       background-color: $white;
       color: $grey-2;
     }
+
+    .button:hover {
+      border-color: $grey-2;
+    }
   }
 
   .info-wrapper {
     display: flex;
     flex-direction: row;
     padding: 5px;
+    position: relative;
   }
 
   .name {
@@ -39,10 +44,12 @@
     width: 100px;
   }
 
-  .button {
-    border: solid 1px $grey-2;
-    font-size: 12px;
-    float: right;
-    padding: 5px;
+  .actions {
+    position: absolute;
+    right: 5px;
+    
+    .button + .button {
+      margin-right: 2px;
+    }
   }
 }

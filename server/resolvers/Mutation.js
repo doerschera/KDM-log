@@ -4,6 +4,7 @@ const { APP_SECRET, getUserId } = require('../utils');
 const {
   createNewSurvivor,
   markAsActive,
+  markAsInactive,
 } = require('./survivor/index');
 
 async function signup(parent, args, context, info) {
@@ -54,5 +55,6 @@ module.exports = {
   createNewSurvivor,
   login,
   markAsActive,
+  markAsInactive,
   signup,
 }

@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react';
+import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import { string, array } from 'prop-types';
 import classNames from 'classnames';
 import lantern from '../../lantern-dark-grey.svg';
 
 import './styles.scss';
 
-export default class Sidebar extends PureComponent {
+class Sidebar extends PureComponent {
   static propTypes = {
     context: string,
     options: array,
@@ -19,28 +21,27 @@ export default class Sidebar extends PureComponent {
   }
 
   render() {
-    const {
-      context,
-      options,
-      navigationText,
-    } = this.props;
-
+    const { location } = this.props;
     const expanded = this.state.expanded;
+    const activeSection = location.pathname.includes('/hunt') ? 'hunt' : 'settlement';
     return(
       <div className={classNames('sidebar', { expanded })}>
         <img src={lantern} alt="lantern" onClick={this.onSidebarToggle} />
         <div className="content">
-          <div className="header context">{context}</div>
+          <div className={classNames('header', { active: activeSection === 'hunt'})}>Hunt</div>
           <div className="options">
-            {options.map((option, i) => (
-              <div className="option" onClick={option.onClick} id={i}>
-                {option.name}
-              </div>
-            ))}
+            <NavLink to="/survivors" activeClassName="active">
+              <div className="option">All Survivors</div>
+            </NavLink>
+            <NavLink to="/active" activeClassName="active">
+              <div className="option">Active Survivors</div>
+            </NavLink>
           </div>
-          <div className="header">{navigationText}</div>
+          <div className={classNames('header', { active: activeSection === 'settlement' })}>Settlement</div>
         </div>
       </div>
     )
   }
 }
+
+export default withRouter(Sidebar);

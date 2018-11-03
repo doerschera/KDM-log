@@ -1,10 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Query } from 'react-apollo';
-import Conditional from '../Conditional';
-import Sidebar from '../Sidebar';
-import SurvivorSummary from '../SurvivorSummary';
-
-import ALL_SURVIVORS from '../../queries/allSurvivors';
+import Layer from '../Layer';
 
 import './styles.scss';
 
@@ -25,29 +20,12 @@ export default class Hunt extends PureComponent {
 
   render() {
     return (
-      <div className="hunt">
-        <span className="page-title">Hunt</span>
-        <Sidebar context="Hunt" navigationTitle="Settlement" options={this.sidebarOptions} />
-        <Conditional condition={this.state.showAllSurvivors}>
-          <Query query={ALL_SURVIVORS}>
-            {
-              ({ loading, error, data }) => {
-                if (loading) {
-                  return <div>Loading...</div>
-                }
-
-                if (error) {
-                  return console.log(error)
-                }
-
-                return (
-                  data.survivors.map(survivor => <SurvivorSummary key={survivor.id} survivor={survivor} />)
-                )
-              }
-            }
-          </Query>
-        </Conditional>
-      </div>
+      <Layer>
+        <div className="hunt">
+          <span className="page-title">Hunt</span>
+          
+        </div>
+      </Layer>
     )
   }
 }

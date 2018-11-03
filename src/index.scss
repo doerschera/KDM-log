@@ -1,6 +1,6 @@
 @import './mixins.scss';
 
-html, body {
+html, body, #root, .App {
   height: 100%;
 }
 
@@ -22,5 +22,9 @@ body {
     content: 'XXX';
     margin-right: 5px;
   }
+}
+
+a {
+  text-decoration: none;
 }
 

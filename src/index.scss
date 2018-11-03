@@ -26,5 +26,10 @@ body {
 
 a {
   text-decoration: none;
+
+  &:not(.active):hover {
+      cursor: pointer;
+      text-decoration-line: line-through;
+    }
 }
 

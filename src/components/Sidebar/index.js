@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { string, array } from 'prop-types';
 import classNames from 'classnames';
@@ -28,16 +28,20 @@ class Sidebar extends PureComponent {
       <div className={classNames('sidebar', { expanded })}>
         <img src={lantern} alt="lantern" onClick={this.onSidebarToggle} />
         <div className="content">
-          <div className={classNames('header', { active: activeSection === 'hunt'})}>Hunt</div>
+          <Link to="/hunt" className={classNames('header-link', { active: activeSection === 'hunt' })}>
+            <div className="header">Hunt</div>
+          </Link>
           <div className="options">
-            <NavLink to="/survivors" activeClassName="active">
+            <NavLink to="/hunt/survivors" className="option-link" activeClassName="active">
               <div className="option">All Survivors</div>
             </NavLink>
-            <NavLink to="/active" activeClassName="active">
+            <NavLink to="/hunt/active" className="option-link" activeClassName="active">
               <div className="option">Active Survivors</div>
             </NavLink>
           </div>
-          <div className={classNames('header', { active: activeSection === 'settlement' })}>Settlement</div>
+          <Link to="/settlement" className={classNames('header-link', { active: activeSection === 'settlement' })}>
+            <div className="header">Settlement</div>
+          </Link>
         </div>
       </div>
     )

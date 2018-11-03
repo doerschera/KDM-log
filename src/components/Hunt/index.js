@@ -20,12 +20,10 @@ export default class Hunt extends PureComponent {
 
   render() {
     return (
-      <Layer>
-        <div className="hunt">
-          <span className="page-title">Hunt</span>
-          
-        </div>
-      </Layer>
+      <div className="hunt">
+        <span className="page-title">Hunt</span>
+        
+      </div>
     )
   }
 }

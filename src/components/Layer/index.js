@@ -10,8 +10,8 @@ const Layer = () => (
   <div className="layer">
     <div className="body">
       <Switch>
-        <Route exact path="/" component={Hunt} />
-        <Route exact path="/survivors" component={AllSurvivors} />
+        <Route exact path="/hunt" component={Hunt} />
+        <Route exact path="/hunt/survivors" component={AllSurvivors} />
       </Switch>
     </div>
     <Sidebar />

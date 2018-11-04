@@ -4,6 +4,7 @@ type Query {
   info: String!
   users: [User!]!
   survivors: [Survivor!]!
+  activeSurvivors: [Survivor!]!
   campaigns: [Campaign!]!
 }
 

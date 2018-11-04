@@ -1,3 +1,7 @@
+const {
+  activeSurvivors,
+} = require('./survivor/index');
+
 function survivors(root, args, context, info) {
   return context.db.query.survivors({}, info);
 }
@@ -11,6 +15,7 @@ function users(root, args, context, info) {
 }
 
 module.exports = {
+  activeSurvivors,
   campaigns,
   survivors,
   users,

@@ -5,7 +5,6 @@ import ALL_SURVIVORS from '../../queries/allSurvivors';
 
 const AllSurvivors = () => (
   <div className="all-survivors">
-    <div className="page-title">Survivors</div>
     <Query query={ALL_SURVIVORS}>
       {
         ({ loading, error, data }) => {

@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { object, func, bool } from 'prop-types';
 import classNames from 'classnames';
-import lantern from '../../lantern-dark-grey.svg';
+import lantern from '../../svgs/lantern-dark-grey.svg';
 
 import './styles.scss';
 

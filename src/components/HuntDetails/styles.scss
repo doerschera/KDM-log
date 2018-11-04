@@ -1,0 +1,16 @@
+@import '../../mixins.scss';
+
+.hunt-details {
+  margin: 20px;
+
+  .name {
+    @include font-monospace;
+    background-color: $grey-1;
+    color: $grey-4;
+  }
+
+  .hit-locations {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+}

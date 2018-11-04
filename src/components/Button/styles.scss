@@ -1,10 +1,12 @@
 @import '../../mixins.scss';
 
 .button {
+  @include font-monospace;
   border: solid 1px $grey-2;
   font-size: 12px;
   float: right;
   padding: 5px;
+  height: 12px;
 
   &:hover {
     border-color: $grey-3;

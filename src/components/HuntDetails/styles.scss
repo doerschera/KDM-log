@@ -3,6 +3,32 @@
 .hunt-details {
   border: solid 1px $grey-3;
   margin: 20px;
+  position: relative;
+  height: 475px;
+  width: 475px;
+
+  .death {
+    background-color: $black;
+    background-image: url('../../svgs/skull.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    opacity: .9;
+    position: absolute;
+    width: 100%;
+  }
+
+  .header {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    .button {
+      margin-right: 5px;
+    }
+  }
 
   .name {
     @include font-monospace;
@@ -17,6 +43,13 @@
     border-top: solid 1px $grey-3;
     display: flex;
     flex-flow: row nowrap;
+
+    .buttons {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      width: 225px;
+    }
 
     .button {
       margin-left: 5px;

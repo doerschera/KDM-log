@@ -25,6 +25,7 @@ type Mutation {
   markAsActive(id: String!): Survivor
   markAsInactive(id: String!): Survivor
   createNewSurvivor(name: String!, gender: Gender, campaign: String!): Survivor
+  killSurvivor(id: String!): Survivor
   signup(username: String!, password: String!, name: String!): AuthPayload
   login(username: String!, password: String!): AuthPayload
   updateDamage(damage: Int!, id: String!): HitLocation

@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { APP_SECRET, getUserId } = require('../utils');
 const {
   createNewSurvivor,
+  killSurvivor,
   markAsActive,
   markAsInactive,
 } = require('./survivor/index');
@@ -56,6 +57,7 @@ function campaign(root, args, context, info) {
 module.exports = {
   campaign,
   createNewSurvivor,
+  killSurvivor,
   login,
   markAsActive,
   markAsInactive,

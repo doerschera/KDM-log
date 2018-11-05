@@ -6,6 +6,9 @@ const {
   markAsActive,
   markAsInactive,
 } = require('./survivor/index');
+const {
+  updateDamage,
+} = require('./hitLocation/index');
 
 async function signup(parent, args, context, info) {
   const password = await bcrypt.hash(args.password, 10);
@@ -57,4 +60,5 @@ module.exports = {
   markAsActive,
   markAsInactive,
   signup,
-}
+  updateDamage,
+};

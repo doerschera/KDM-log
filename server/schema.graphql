@@ -1,4 +1,4 @@
-# import Campaign, Survivor, Gender from "./generated/prisma.graphql"
+# import Campaign, Survivor, Gender, HitLocation from "./generated/prisma.graphql"
 
 type Query {
   info: String!
@@ -27,4 +27,5 @@ type Mutation {
   createNewSurvivor(name: String!, gender: Gender, campaign: String!): Survivor
   signup(username: String!, password: String!, name: String!): AuthPayload
   login(username: String!, password: String!): AuthPayload
+  updateDamage(damage: Int!, id: String!): HitLocation
 }

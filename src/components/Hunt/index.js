@@ -36,7 +36,7 @@ export default class Hunt extends PureComponent {
 
               return (
                 data.activeSurvivors.map(survivor => (
-                  <HuntDetails survivor={survivor} key={survivor.name} id={survivor.id} />
+                  <HuntDetails survivor={survivor} key={survivor.name} />
                 ))
               );
             }

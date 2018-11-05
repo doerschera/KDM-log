@@ -29,7 +29,6 @@ function createMovement(context, info, survivor) {
     data: {
       survivor: { connect: { id: survivor.id } },
       value: 5,
-      speed: 2,
     }
   }, info);
 }

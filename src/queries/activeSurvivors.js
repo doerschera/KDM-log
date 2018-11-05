@@ -18,6 +18,7 @@ const ACTIVE_SURVIVORS = gql`
         speed
       }
       brain {
+        id
         value
       }
       hitLocations {

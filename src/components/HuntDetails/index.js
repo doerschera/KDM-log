@@ -5,6 +5,10 @@ import KILL_SURVIVOR from '../../mutations/killSurvivor';
 import Conditional from '../Conditional';
 import Button from '../Button';
 import HitLocationInput from '../HitLocationInput';
+import TogglePane from '../TogglePane';
+import Survival from '../Survival';
+import Movement from '../Movement';
+import Brain from '../Brain';
 
 import './styles.scss';
 
@@ -55,6 +59,21 @@ export default class HuntDetails extends PureComponent {
             <Button title="Reset Values" onClick={this.toggleResetFlag} />
           </div>
         </div>
+        <TogglePane title="Survival" expanded={true}>
+          <Survival survival={survivor.survival} />
+        </TogglePane>
+        <TogglePane title="Movement" expanded={true}>
+          <Movement movement={survivor.movement} />
+        </TogglePane>
+        <TogglePane title="Brain" expanded={true}>
+          <Brain brain={survivor.brain} />
+        </TogglePane>
+        <TogglePane title="Weapon" expanded={false} />
+        <TogglePane title="Courage" expanded={false} />
+        <TogglePane title="Understanding" expanded={false} />
+        <TogglePane title="Fighting Arts" expanded={false} />
+        <TogglePane title="Disorders" expanded={false} />
+        <TogglePane title="Abilities + Impairments" expanded={false} />
       </div>
     );
   }

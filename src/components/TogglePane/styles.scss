@@ -1,0 +1,56 @@
+@import '../../mixins.scss';
+
+.toggle-pane {
+  @include font-monospace;
+  background-color: $grey-1;
+  border-bottom: solid 1px $grey-4;
+
+  .header {
+    padding: 5px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .arrow {
+    transform: rotate(90deg);
+  }
+
+  .pane {
+    height: 0;
+    transition: height .5s ease;
+
+    & > div {
+      align-items: center;
+      display: none;
+      flex-flow: row nowrap;
+      padding: 0 10px 10px 10px;
+    }
+
+    .value {
+      @include font-text;
+      color: $white;
+      font-size: 30px;
+      height: 40px;
+      line-height: 40px;
+      margin-right: 40px;
+      text-align: center;
+      width: 40px;
+    }
+  }
+
+  &.expanded {
+    .arrow {
+      transform: none;
+    }
+
+    .pane {
+      height: 100%;
+
+      & > div {
+        display: flex;
+      }
+    }
+  }
+}

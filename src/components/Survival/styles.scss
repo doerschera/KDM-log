@@ -1,0 +1,23 @@
+@import '../../mixins.scss';
+
+.survival {
+  .value {
+    @include font-text;
+    color: $white;
+    font-size: 30px;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 40px;
+    text-align: center;
+    width: 40px;
+  }
+
+  .skill {
+    font-size: 14px;
+
+    &:before {
+      content: '+';
+      margin-right: 5px;
+    }
+  }
+}

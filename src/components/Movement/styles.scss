@@ -1,0 +1,15 @@
+@import '../../mixins.scss';
+
+.movement {
+  .ability {
+    box-sizing: border-box;
+    height: 40px;
+    margin-right: 40px;
+    padding-top: 5px;
+    width: 40px;
+
+    &-title {
+      font-size: 10px;
+    }
+  }
+}

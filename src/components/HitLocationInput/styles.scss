@@ -1,23 +1,26 @@
 @import '../../mixins.scss';
 
 .hit-location-input {
-  &.legs {
-    background-image: url('../../svgs/foot.svg');
-  }
 
-  &.arms {
-    background-image: url('../../svgs/hand.svg');
-  }
+  input {
+    &.legs {
+      background-image: url('../../svgs/foot.svg');
+    }
 
-  &.head {
-    background-image: url('../../svgs/head.svg');
-  }
+    &.arms {
+      background-image: url('../../svgs/hand.svg');
+    }
 
-  &.waist {
-    background-image: url('../../svgs/waist.svg');
-  }
+    &.head {
+      background-image: url('../../svgs/head.svg');
+    }
 
-  &.body {
-    background-image: url('../../svgs/body.svg');
+    &.waist {
+      background-image: url('../../svgs/waist.svg');
+    }
+
+    &.body {
+      background-image: url('../../svgs/body.svg');
+    }
   }
 }

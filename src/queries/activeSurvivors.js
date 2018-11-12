@@ -19,6 +19,7 @@ const ACTIVE_SURVIVORS = gql`
       }
       brain {
         id
+        injured
         value
       }
       hitLocations {

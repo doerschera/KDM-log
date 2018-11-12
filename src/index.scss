@@ -49,5 +49,9 @@ input {
     width: 50px;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
+
+  &:focus {
+    outline: none;
+  }
 }
 

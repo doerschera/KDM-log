@@ -1,5 +1,28 @@
+@import '../../mixins.scss';
+
 .brain {
+  justify-content: space-between;
+
   div {
     font-size: 14px;
+  }
+
+  .checkbox-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .checkbox {
+    border: solid 1px $grey-2;
+    height: 12px;
+    width: 12px;
+
+    &.checked {
+      background-color: $grey-2;
+    }
+
+    &-label {
+      margin-left: 5px;
+    }
   }
 }

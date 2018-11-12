@@ -1,0 +1,6 @@
+@import '../../mixins.scss';
+
+.invisible-input:hover,
+.invisible-input:focus {
+  border-bottom: solid 1px $grey-2;
+}

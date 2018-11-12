@@ -28,6 +28,6 @@ type Mutation {
   killSurvivor(id: String!): Survivor
   signup(username: String!, password: String!, name: String!): AuthPayload
   login(username: String!, password: String!): AuthPayload
-  updateBrain(id: String!, value: Int!): Brain
+  updateBrain(id: String!, value: Int!, injured: Boolean): Brain
   updateDamage(damage: Int!, id: String!): HitLocation
 }
